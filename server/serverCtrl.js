@@ -3,7 +3,7 @@ const app = require('./server'),
 
 module.exports = {
   getProjects: (req, res) => {
-  	let userId = [req.body.id];
+  	let userId = [parseInt(req.params.id)];
 
     db.get_projects(userId, (err, projects) => {
       (!err) ? res.send(projects) : res.send(err);
@@ -27,8 +27,8 @@ module.exports = {
   },
 
   deleteProject: (req, res) => {
-  	let proId = [req.body.wf_id];
-
+  	let proId = [parseInt(req.params.wf_id)];
+    
   	db.delete_project(proId, (err, deleted) => {
   		(!err) ? res.send(deleted) : res.send(err);
   	});
