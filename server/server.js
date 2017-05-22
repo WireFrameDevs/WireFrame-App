@@ -7,6 +7,8 @@ const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const config = require('./config');
 
+const port = 3000;
+
 var conn = massive.connectSync({
     connectionString: config.elephantSQL
 });
@@ -85,7 +87,11 @@ app.get('/auth/logout', function(req, res) {
 
 
 // Endpoints
-app.get("/api/projects/:id", serverCtrl.getUserProjects);
+app.get("/api/projects/:id", serverCtrl.getProjects);
 app.post("/api/projects", serverCtrl.createProject);
 app.put("/api/projects/:id", serverCtrl.updateProject);
 app.delete("/api/projects/:id", serverCtrl.deleteProject);
+
+
+
+app.listen(port, () => console.log('App is running!'))
