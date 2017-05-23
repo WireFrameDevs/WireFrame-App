@@ -89,8 +89,8 @@ app.get('/auth/logout', function(req, res) {
 // Endpoints
 app.get("/api/projects/:id", serverCtrl.getProjects);
 app.post("/api/projects", serverCtrl.createProject);
-app.put("/api/projects/:id", serverCtrl.updateProject);
-app.delete("/api/projects/:id", serverCtrl.deleteProject);
+app.put("/api/project", serverCtrl.updateProject);
+app.delete("/api/projects/:wf_id", serverCtrl.deleteProject);
 
 
 
