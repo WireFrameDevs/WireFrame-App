@@ -1038,16 +1038,96 @@
 .slideOutUp {
   animation-name: slideOutUp; }
 
-.btn {
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
+button {
   border: none;
-  position: relative;
-  padding: 12px 30px;
-  margin: 10px 1px;
-  font-weight: 400;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0; }
+  letter-spacing: 0;
+  border-radius: 3px;
+  padding: 12px 30px;
+  margin: 10px;
+  font-size: 12px;
+  position: relative;
+  background-color: #fff; }
+
+button:hover {
+  background-color: #ffa726;
+  color: #fff; }
+
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
+.card {
+  background: #4CFF6E;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(180deg, #4CFF6E, #374BDC);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(180deg, #4CFF6E, #374BDC);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(180deg, #4CFF6E, #374BDC);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(180deg, #4CFF6E, #374BDC);
+  /* Standard syntax */
+  position: relative;
+  width: 300px;
+  height: 200px;
+  overflow: hidden;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.65);
+  margin: 40px 40px;
+  border-radius: 10px; }
+  .card .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 50px;
+    background: white;
+    padding: 0 13px; }
+
+.card-add {
+  background-color: white;
+  position: relative;
+  width: 300px;
+  height: 200px;
+  overflow: hidden;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.65);
+  margin: 40px 40px;
+  border-radius: 10px; }
+  .card-add .add-new {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center; }
+  .card-add h4 {
+    margin-top: 20px; }
+
+.card-add:hover {
+  background-color: lightgray;
+  position: relative;
+  width: 300px;
+  height: 200px;
+  overflow: hidden;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.65);
+  margin: 40px 40px;
+  border-radius: 10px; }
 
 
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
+
+.icon-small {
+  font-size: 24px !important; }
+
+.icon-large {
+  font-size: 36px !important; }
+
+.icon-extra-large {
+  font-size: 80px !important; }
 
 
 input {
@@ -1057,32 +1137,66 @@ input {
   padding: 15px 12px;
   outline: none; }
 
+a {
+  outline: none;
+  border: none; }
 
-
-.nav-onTop {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 60px;
-  color: white; }
-  .nav-onTop div {
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
+.nav-wrapper {
+  position: relative;
+  margin-bottom: 60px; }
+  .nav-wrapper .nav-onTop {
     display: flex;
     align-items: center;
-    margin: 25px; }
-  .nav-onTop div img {
-    position: absolute;
-    right: 25px;
-    height: 38px;
-    border-radius: 50px; }
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    color: white; }
+    .nav-wrapper .nav-onTop div {
+      display: flex;
+      align-items: center;
+      margin: 25px; }
+    .nav-wrapper .nav-onTop div img {
+      position: absolute;
+      right: 25px;
+      height: 38px;
+      border-radius: 50px; }
+  .nav-wrapper nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background: #000;
+    opacity: 0.7;
+    box-shadow: 0 13px 39px -10px rgba(0, 0, 0, 0.65), 0 1px 25px 0px rgba(0, 0, 0, 0.15); }
 
-nav {
-  position: relative;
-  width: 100%;
-  height: 60px;
-  background: #000;
-  opacity: 0.5; }
+.bottom-border {
+  position: absolute;
+  bottom: 0;
+  background: black;
+  height: 3px;
+  width: 100%; }
+  .bottom-border .bar {
+    border-radius: 50px;
+    left: -5px;
+    position: absolute;
+    width: 300px;
+    height: 3px;
+    background: palegreen;
+    opacity: 1;
+    transition: all 10s linear;
+    animation-duration: 10s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: h-move; }
+
+@keyframes h-move {
+  0% {
+    left: -600px; }
+  100% {
+    left: 100%; } }
 
 /* 
 html5doctor.com Reset Stylesheet
@@ -1175,21 +1289,9 @@ input, select {
 *, *:before, *:after {
   box-sizing: border-box; }
 
-.btn {
-  border: none;
-  position: relative;
-  padding: 12px 30px;
-  margin: 10px 1px;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0; }
-
-input {
-  border-radius: 50px;
-  height: 26px;
-  border: none;
-  padding: 15px 12px;
-  outline: none; }
+.sidebar {
+  width: 400px;
+  height: 100vh; }
 
 /* 
 html5doctor.com Reset Stylesheet
@@ -1198,6 +1300,18 @@ Last Updated: 2010-09-17
 Author: Richard Clark - http://richclarkdesign.com 
 Twitter: @rich_clark
 */
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code,
@@ -1282,35 +1396,181 @@ input, select {
 *, *:before, *:after {
   box-sizing: border-box; }
 
-.nav-onTop {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 60px;
-  color: white; }
-  .nav-onTop div {
+button {
+  border: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  border-radius: 3px;
+  padding: 12px 30px;
+  margin: 10px;
+  font-size: 12px;
+  position: relative;
+  background-color: #fff; }
+
+button:hover {
+  background-color: #ffa726;
+  color: #fff; }
+
+.icon-small {
+  font-size: 24px !important; }
+
+.icon-large {
+  font-size: 36px !important; }
+
+.icon-extra-large {
+  font-size: 80px !important; }
+
+input {
+  border-radius: 50px;
+  height: 26px;
+  border: none;
+  padding: 15px 12px;
+  outline: none; }
+
+a {
+  outline: none;
+  border: none; }
+
+h1, h2, h3, h4, h5, h6, p, a, button, html, body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300; }
+
+h1, .h1 {
+  font-size: 3.8em;
+  line-height: 1.15em; }
+
+h2, .h2 {
+  font-size: 2.6em; }
+
+h3, .h3 {
+  font-size: 1.825em;
+  line-height: 1.4em;
+  margin: 20px 0 10px; }
+
+h4, .h4 {
+  font-size: 1.5em;
+  line-height: 1.4em; }
+
+h5, .h5 {
+  font-size: 1.25em;
+  line-height: 1.4em;
+  margin-bottom: 15px; }
+
+h6, .h6 {
+  font-size: 1em; }
+
+.nav-wrapper {
+  position: relative;
+  margin-bottom: 60px; }
+  .nav-wrapper .nav-onTop {
     display: flex;
     align-items: center;
-    margin: 25px; }
-  .nav-onTop div img {
-    position: absolute;
-    right: 25px;
-    height: 38px;
-    border-radius: 50px; }
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    color: white; }
+    .nav-wrapper .nav-onTop div {
+      display: flex;
+      align-items: center;
+      margin: 25px; }
+    .nav-wrapper .nav-onTop div img {
+      position: absolute;
+      right: 25px;
+      height: 38px;
+      border-radius: 50px; }
+  .nav-wrapper nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background: #000;
+    opacity: 0.7;
+    box-shadow: 0 13px 39px -10px rgba(0, 0, 0, 0.65), 0 1px 25px 0px rgba(0, 0, 0, 0.15); }
 
-nav {
-  position: relative;
-  width: 100%;
-  height: 60px;
-  background: #000;
-  opacity: 0.5; }
+.bottom-border {
+  position: absolute;
+  bottom: 0;
+  background: black;
+  height: 3px;
+  width: 100%; }
+  .bottom-border .bar {
+    border-radius: 50px;
+    left: -5px;
+    position: absolute;
+    width: 300px;
+    height: 3px;
+    background: palegreen;
+    opacity: 1;
+    transition: all 10s linear;
+    animation-duration: 10s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: h-move; }
+
+@keyframes h-move {
+  0% {
+    left: -600px; }
+  100% {
+    left: 100%; } }
+
+.app-bg {
+  background: url("../images/mainBG.jpg") no-repeat center center fixed;
+  background-size: cover; }
 
 html {
   background: url("../images/mainBG.jpg") no-repeat center center fixed;
   background-size: cover; }
 
+.main-bg-overlay {
+  position: absolute;
+  top: 60px;
+  height: 100vh;
+  width: 100vw;
+  background: white no-repeat center center fixed;
+  background-size: cover;
+  opacity: 0.3; }
 
+.content {
+  position: relative;
+  top: 60px;
+  height: 100vh;
+  width: 100vw;
+  background: white no-repeat center center fixed;
+  background-size: cover;
+  opacity: 0.3; }
+
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
+h1, h2, h3, h4, h5, h6, p, a, button, html, body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300; }
+
+h1, .h1 {
+  font-size: 3.8em;
+  line-height: 1.15em; }
+
+h2, .h2 {
+  font-size: 2.6em; }
+
+h3, .h3 {
+  font-size: 1.825em;
+  line-height: 1.4em;
+  margin: 20px 0 10px; }
+
+h4, .h4 {
+  font-size: 1.5em;
+  line-height: 1.4em; }
+
+h5, .h5 {
+  font-size: 1.25em;
+  line-height: 1.4em;
+  margin-bottom: 15px; }
+
+h6, .h6 {
+  font-size: 1em; }
 
 /*# sourceMappingURL=maps/styles.css.map */
