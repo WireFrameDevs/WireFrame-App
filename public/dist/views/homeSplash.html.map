@@ -1,1 +1,1 @@
-{"version":3,"names":[],"mappings":"","sources":["homeSplash.html"],"sourcesContent":["<h1>HOME SPLASH</h1>\r\n"],"file":"homeSplash.html"}
+{"version":3,"names":[],"mappings":"","sources":["homeSplash.html"],"sourcesContent":["<h1>HOME SPLASH</h1>\r\n\r\n<button class=\"btn\">btn</button>\r\n\r\n"],"file":"homeSplash.html"}

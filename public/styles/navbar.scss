@@ -1,0 +1,30 @@
+@import 'mixins';
+
+.nav-onTop{
+    @include vert-align-center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    color: white;
+
+    div{
+        @include vert-align-center;
+        margin: 25px;
+    }
+
+    div img{
+        position: absolute;
+        right: 25px;
+        height: 38px;
+        border-radius: 50px;
+    }
+}
+
+nav{
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background: #000;
+    opacity: 0.5;
+}
