@@ -18,4 +18,6 @@ angular.module('app', ['ui.router', 'ngAnimate'])
             })
             console.log($urlRouterProvider)
             $urlRouterProvider.otherwise('/');
+
+
     });
