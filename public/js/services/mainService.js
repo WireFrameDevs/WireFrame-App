@@ -1,7 +1,6 @@
 angular.module('app').service('mainService', function($http){
-  this.test = "Controller and Service are working";
 
-  let baseurl = 'localhost:3000/';
+  let baseurl = 'http://localhost:3000/';
 
   this.getAllProjects = (userId) => {
   	return $http({
@@ -39,6 +38,28 @@ angular.module('app').service('mainService', function($http){
   	}).then((response) => {
   		return response;
   	});
+  }
+
+  this.getUser = () => {
+    return $http({
+      method: 'GET',
+      url: '/auth/me'
+    }).then((res) => {
+      return res.data;
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+
+  this.logout = () => {
+    return $http({
+      method: 'GET',
+      url: '/auth/logout'
+    }).then((res) => {
+      return res.data;
+    }).catch((err) => {
+      console.log(err);
+    });
   }
 
 });

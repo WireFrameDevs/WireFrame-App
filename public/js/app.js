@@ -16,6 +16,6 @@ angular.module('app', ['ui.router', 'ngAnimate'])
                 templateUrl: './views/canvas.html',
                 controller: 'canvasCtrl'
             })
-            console.log($urlRouterProvider)
+            // console.log($urlRouterProvider)
             $urlRouterProvider.otherwise('/');
     });
