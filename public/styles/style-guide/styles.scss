@@ -1,0 +1,44 @@
+@import 'reset';
+@import '_variables';
+@import '_mixins';
+
+@import 'buttons';
+@import 'colors';
+@import 'fonts';
+@import 'icons';
+@import 'images';
+@import 'inputs';
+@import 'links';
+@import 'typography';
+@import 'navbar';
+
+
+//BACKGROUND IMAGE
+.app-bg{
+    background: url('../images/mainBG.jpg') no-repeat center center fixed; 
+    background-size: cover;
+}
+html{
+    background: url('../images/mainBG.jpg') no-repeat center center fixed; 
+    background-size: cover;
+}
+
+.main-bg-overlay{
+    position: absolute;
+    top: 60px;
+    height: 100vh;
+    width: 100vw;
+    background: white no-repeat center center fixed;
+    background-size: cover;
+    opacity: 0.3;
+}
+.content{
+    position: relative;
+    top: 60px;
+    height: 100vh;
+    width: 100vw;
+    background: white no-repeat center center fixed;
+    background-size: cover;
+    opacity: 0.3;
+}
+

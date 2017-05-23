@@ -1,0 +1,19 @@
+@import '_variables';
+
+button{
+    border: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    border-radius: $border-radius-base;
+    padding: 12px 30px;
+    margin: 10px;
+    font-size: $mdb-btn-font-size-base;
+    position: relative;
+    background-color: $btn-default-bg;
+}
+
+button:hover{
+    background-color: $orange-400;
+    color: $btn-default-bg;
+}
