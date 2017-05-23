@@ -1,0 +1,20 @@
+@import 'variables';
+@import 'mixins';
+
+@import 'buttons';
+@import 'fonts';
+@import 'icons';
+@import 'images';
+@import 'inputs';
+@import 'links';
+@import 'reset';
+@import 'text';
+@import 'navbar';
+
+
+//BACKGROUND IMAGE
+html{
+    background: url('../images/mainBG.jpg') no-repeat center center fixed; 
+    background-size: cover;
+}
+
