@@ -22,7 +22,7 @@ app.use(session({
 }))
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + './../public'));
 app.use(cors());
 // Expanding server capacity
 app.use(bodyParser.json({ limit: '50mb' }));
