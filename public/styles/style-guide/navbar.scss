@@ -5,6 +5,7 @@
     margin-bottom: 60px;
     .nav-onTop{
         @include vert-align-center;
+        justify-content: space-between;
         position: fixed;
         top: 0;
         width: 100%;
@@ -18,8 +19,6 @@
         }
 
         .prof-pic{
-            position: absolute;
-            right: 25px;
             height: 38px;
             border-radius: 50px;
         }

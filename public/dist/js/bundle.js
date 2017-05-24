@@ -4,18 +4,31 @@ angular.module('app', ['ui.router', 'ngAnimate']).config(function ($stateProvide
     $stateProvider.state('home', {
         url: '/',
         templateUrl: './views/homeSplash.html',
-        controller: 'homeSplashCtrl'
+        controller: 'homeSplashCtrl',
+        authenticate: false
     }).state('projects', {
         url: '/projects',
         templateUrl: './views/projects.html',
-        controller: 'projectsCtrl'
+        controller: 'projectsCtrl',
+        authenticate: true
     }).state('canvas', {
         url: '/canvas',
         templateUrl: './views/canvas.html',
-        controller: 'canvasCtrl'
+        controller: 'canvasCtrl',
+        authenticate: true
     });
     // console.log($urlRouterProvider)
     $urlRouterProvider.otherwise('/');
+});
+
+angular.module("app").run(function ($rootScope, $state, mainService) {
+    $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
+        if (toState.authenticate && !mainService.getUser()) {
+            // User isn’t authenticated
+            $state.transitionTo("home");
+            event.preventDefault();
+        }
+    });
 });
 'use strict';
 
@@ -161,61 +174,85 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService) {
 });
 'use strict';
 
-angular.module('app').controller('homeSplashCtrl', function ($scope, mainService) {});
-'use strict';
-
-angular.module('app').controller('mainCtrl', function ($scope, mainService) {
-
-	function getUser() {
-		console.log('getUser function ran!');
-		mainService.getUser().then(function (user) {
-			if (user) {
-				$scope.currentUser = user;
-				$scope.isLoggedIn = true;
-				var userId = user.id;
-
-				$scope.getProjects = function () {
-					mainService.getAllProjects(userId).then(function (response) {
-						$scope.projects = response;
-					});
-				};
-				$scope.getProjects();
-
-				$scope.newProject = function (projectData) {
-					projectData.user_id = userId;
-					mainService.createProject(projectData).then(function (response) {
-						$scope.newPro = response;
-					});
-				};
-
-				$scope.updateProject = function () {
-					mainService.updateProject(newData).then(function (response) {
-						$scope.updated = response;
-					});
-				};
-
-				$scope.deleteProject = function (projectId) {
-					mainService.deleteProject(projectId).then(function (response) {
-						$scope.deleted = response;
-					});
-				};
-			}
-		});
-	}
-
-	$scope.callUser = getUser();
-
-	$scope.logout = mainService.logout;
+angular.module('app').controller('homeSplashCtrl', function ($scope, mainService) {
+  console.log('homeSplashCTRL!!!!!');
 });
 'use strict';
 
-angular.module('app').controller('projectsCtrl', function ($scope, mainService) {});
+angular.module('app').controller('mainCtrl', function ($scope, mainService, $location, $rootScope) {
+  console.log('mainCTRL!!!!!!!');
+});
+'use strict';
+
+angular.module('app').controller('projectsCtrl', function ($scope, mainService, $rootScope, $location) {
+
+    function getUser() {
+        console.log('getUser function ran!');
+        mainService.getUser().then(function (user) {
+            if (user) {
+                $rootScope.currentUser = user;
+                $rootScope.isLoggedIn = true;
+                // $rootScope.userId = user.id;
+                var userId = user.id;
+                $scope.getProjects = function () {
+                    mainService.getAllProjects(userId).then(function (response) {
+                        $scope.projects = response;
+                        console.log(response);
+                        if ($scope.projects.fav_wf === true) {
+                            $scope.favorited = true;
+                        } else {
+                            $scope.favorited = false;
+                        }
+                    });
+                };
+                $scope.getProjects();
+
+                //Goes in Canvas Ctrl
+                $scope.newProject = function (projectData) {
+                    projectData.user_id = userId;
+                    mainService.createProject(projectData).then(function (response) {
+                        $scope.newPro = response;
+                    });
+                };
+
+                //Favoriting, deleting shapes, creating shapes, sync project, save existing project.
+                $scope.updateProject = function () {
+                    mainService.updateProject(newData).then(function (response) {
+                        $scope.updated = response;
+                    });
+                };
+
+                $scope.deleteProject = function (projectId) {
+                    mainService.deleteProject(projectId).then(function (response) {
+                        $scope.deleted = response;
+                    });
+                };
+            } else {
+                $rootScope.isLoggedIn = false;
+                // $location.path('homeSplash');
+                // console.log('Auth0 Error', err);
+            }
+        });
+    }
+    $scope.callUser = getUser();
+
+    //PROJECTS
+
+});
 'use strict';
 
 angular.module('app').directive('navBar', function () {
     return {
         restrict: 'E',
-        templateUrl: './views/directives/navBar.html'
+        templateUrl: './views/directives/navBar.html',
+        link: function link(scope, elem, attrs) {},
+        controller: function controller($scope, mainService, $location, $stateParams) {
+            $scope.logout = mainService.logout;
+            console.log($location.path());
+            // $scope.isActive = function(viewLocation) {
+            //     return viewLocation === '/canvas';
+            // };
+        }
     };
 });
 'use strict';
@@ -267,9 +304,10 @@ angular.module('app').service('mainService', function ($http) {
       method: 'GET',
       url: '/auth/me'
     }).then(function (res) {
+      console.log("getting user data from DB", res.data);
       return res.data;
     }).catch(function (err) {
-      console.log(err);
+      return err;
     });
   };
 
