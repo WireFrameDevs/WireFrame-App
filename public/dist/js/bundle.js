@@ -37,20 +37,6 @@ angular.module("app").run(function ($rootScope, $state, mainService) {
 });
 'use strict';
 
-angular.module('app').directive('navBar', function () {
-    return {
-        restrict: 'E',
-        templateUrl: './views/directives/navBar.html',
-        controller: function controller($scope, mainService) {
-            $scope.logout = mainService.logout;
-            if (!$scope.projectName) {
-                $scope.projectName = 'Untitled';
-            }
-        }
-    };
-});
-'use strict';
-
 angular.module('app').controller('canvasCtrl', function ($scope, mainService, $document) {
 
   var canvas = angular.element(document.querySelector('#canvas'));
@@ -373,5 +359,19 @@ angular.module('app').service('mainService', function ($http) {
       console.log(err);
     });
   };
+});
+'use strict';
+
+angular.module('app').directive('navBar', function () {
+    return {
+        restrict: 'E',
+        templateUrl: './views/directives/navBar.html',
+        controller: function controller($scope, mainService) {
+            $scope.logout = mainService.logout;
+            if (!$scope.projectName) {
+                $scope.projectName = 'Untitled';
+            }
+        }
+    };
 });
 //# sourceMappingURL=bundle.js.map
