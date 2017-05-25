@@ -32,10 +32,11 @@ angular.module("app").run(function ($rootScope, $state, mainService) {
 });
 'use strict';
 
-angular.module('app').controller('canvasCtrl', function ($scope, mainService, $document) {
+angular.module('app').controller('canvasCtrl', function ($scope, mainService, $document, $compile) {
 
   var canvas = angular.element(document.querySelector('#canvas'));
   var toolbar = angular.element(document.querySelector('#toolbar'));
+  var shapeToolbar = angular.element(document.querySelector('#shapeToolbar'));
 
   $scope.elementColor = "white";
 
@@ -46,32 +47,37 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
 
   $scope.number = 1;
 
-  // $scope.createToolbar = function() {
-  //   toolbar.append("<div style='position: absolute; top: " + $scope.shadowYLocation + "; left: " + $scope.shadowXLocation + "> <h1>It is a-me, Mario!</h1></div>")
-  // }
-
-  // $scope.createToolbar();
-
+  $scope.allowDraw = true;
 
   $scope.startDraw = function (event) {
-    $scope.toolbarShow = false;
-    $scope.x1 = 0;
-    $scope.x2 = 0;
-    $scope.y1 = 0;
-    $scope.y2 = 0;
-    $scope.tempXLocation = 0;
-    $scope.tempYLocation = 0;
-    $scope.shadowX = 0;
-    $scope.shadowY = 0;
-    $scope.shapeHeight = 0;
-    $scope.shapeWidth = 0;
-    $scope.showShadow = false;
-    $scope.showShadow2 = false;
-    $scope.tempXLocation = event.clientX;
-    $scope.tempYLocation = event.clientY;
-    $scope.toolbarShow = false;
-    event.preventDefault();
-    $document.on("mousemove", draw);
+    if ($scope.allowDraw) {
+      $scope.shapeStyle = {
+        "fill": "white",
+        "stroke": "black",
+        "stroke-width": "1",
+        "opacity": "0.8",
+        "cursor": "move"
+      };
+      $scope.shapeToolbarShow = false;
+      $scope.toolbarShow = false;
+      $scope.x1 = 0;
+      $scope.x2 = 0;
+      $scope.y1 = 0;
+      $scope.y2 = 0;
+      $scope.tempXLocation = 0;
+      $scope.tempYLocation = 0;
+      $scope.shadowX = 0;
+      $scope.shadowY = 0;
+      $scope.shapeHeight = 0;
+      $scope.shapeWidth = 0;
+      $scope.showShadow = false;
+      $scope.showShadow2 = false;
+      $scope.tempXLocation = event.clientX;
+      $scope.tempYLocation = event.clientY;
+      $scope.toolbarShow = false;
+      event.preventDefault();
+      $document.on("mousemove", draw);
+    }
   };
 
   function draw(event) {
@@ -107,109 +113,195 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
   }
 
   $scope.endDraw = function (event) {
-    $scope.showShadow = false;
-    $scope.showShadow2 = true;
-    $scope.shadowX = event.clientX - $scope.tempXLocation;
-    $scope.shadowY = event.clientY - $scope.tempYLocation;
+    if ($scope.allowDraw) {
+      $scope.showShadow = false;
+      $scope.showShadow2 = true;
+      $scope.shadowX = event.clientX - $scope.tempXLocation;
+      $scope.shadowY = event.clientY - $scope.tempYLocation;
 
-    if ($scope.tempXLocation >= event.clientX) {
-      $scope.shadowXLocation = event.clientX;
-    } else {
-      $scope.shadowXLocation = $scope.tempXLocation;
+      if ($scope.tempXLocation >= event.clientX) {
+        $scope.shadowXLocation = event.clientX;
+      } else {
+        $scope.shadowXLocation = $scope.tempXLocation;
+      }
+
+      if ($scope.tempYLocation >= event.clientY) {
+        $scope.shadowYLocation = event.clientY - 60;
+      } else {
+        $scope.shadowYLocation = $scope.tempYLocation - 60;
+      }
+
+      if ($scope.x2 >= $scope.x1) {
+        $scope.shadowX = $scope.x2 - $scope.x1;
+      } else {
+        $scope.shadowX = $scope.x1 - $scope.x2;
+      }
+      if ($scope.y2 >= $scope.y1) {
+        $scope.shadowY = $scope.y2 - $scope.y1;
+      } else {
+        $scope.shadowY = $scope.y1 - $scope.y2;
+      }
+      var shadowYtoolbar = $scope.shadowYLocation.toString() + "px";
+      var shadowXtoolbar = $scope.shadowXLocation.toString() + "px";
+      $scope.toolbarStyle = {
+        "position": "absolute",
+        "top": shadowYtoolbar,
+        "left": shadowXtoolbar
+      };
+
+      $document.unbind("mousemove", draw);
+      if ($scope.shadowX > 5 || $scope.shadowY > 5) {
+        $scope.toolbarShow = true;
+      }
     }
 
-    if ($scope.tempYLocation >= event.clientY) {
-      $scope.shadowYLocation = event.clientY - 60;
-    } else {
-      $scope.shadowYLocation = $scope.tempYLocation - 60;
-    }
-
-    if ($scope.x2 >= $scope.x1) {
-      $scope.shadowX = $scope.x2 - $scope.x1;
-    } else {
-      $scope.shadowX = $scope.x1 - $scope.x2;
-    }
-    if ($scope.y2 >= $scope.y1) {
-      $scope.shadowY = $scope.y2 - $scope.y1;
-    } else {
-      $scope.shadowY = $scope.y1 - $scope.y2;
-    }
-    var shadowYtoolbar = $scope.shadowYLocation.toString() + "px";
-    var shadowXtoolbar = $scope.shadowXLocation.toString() + "px";
-    $scope.toolbarStyle = {
-      "position": "absolute",
-      "top": shadowYtoolbar,
-      "left": shadowXtoolbar
-    };
-
-    $document.unbind("mousemove", draw);
-    if ($scope.shadowX > 5 || $scope.shadowY > 5) {
-      $scope.toolbarShow = true;
-    }
+    $scope.allowDrawFunc();
   };
 
   $scope.createBox = function () {
-    canvas.append("<svg class='draggable' width='100%' height='100%'><rect x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " width=" + $scope.shadowX + " height=" + $scope.shadowY + " style='fill:" + $scope.elementColor + ";stroke:black;stroke-width:1;opacity:0.8;cursor:move'; id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' />  </svg>");
+    var template = "<svg class='draggable' width='100%' height='100%'><rect ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " width=" + $scope.shadowX + " height=" + $scope.shadowY + " ng-style='shapeStyle' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' />  </svg>";
+    var linkFn = $compile(template);
+    var content = linkFn($scope);
+    canvas.append(content);
     $scope.showShadow2 = false;
     $scope.toolbarShow = false;
   };
 
   $scope.createEllipse = function () {
-    canvas.append("<svg width='100%' height='100%'><ellipse cx=" + ($scope.shadowXLocation + $scope.shadowX / 2) + " cy=" + ($scope.shadowYLocation + $scope.shadowY / 2) + " rx=" + $scope.shadowX / 2 + " ry=" + $scope.shadowY / 2 + " style='fill:" + $scope.elementColor + ";stroke:black;stroke-width:1;opacity:0.8;cursor:move;' />    </svg>");
+    var template = "<svg width='100%' height='100%'><ellipse ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragEllipse($event)' ng-click='showEllipseToolbar($event)' cx=" + ($scope.shadowXLocation + $scope.shadowX / 2) + " cy=" + ($scope.shadowYLocation + $scope.shadowY / 2) + " rx=" + $scope.shadowX / 2 + " ry=" + $scope.shadowY / 2 + " ng-style='shapeStyle' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' />    </svg>";
+    var linkFn = $compile(template);
+    var content = linkFn($scope);
+    canvas.append(content);
     $scope.showShadow2 = false;
     $scope.toolbarShow = false;
   };
 
   $scope.createCircle = function () {
-    canvas.append("<svg width='100%' height='100%'><circle cx=" + ($scope.shadowXLocation + $scope.shadowX / 2) + " cy=" + ($scope.shadowYLocation + $scope.shadowX / 2) + " r=" + $scope.shadowX / 2 + " style='fill:" + $scope.elementColor + ";stroke:black;stroke-width:1;opacity:0.8;cursor:move;' />    </svg>");
+    var template = "<svg width='100%' height='100%'><circle ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragCircle($event)' ng-click='showCircleToolbar($event)' cx=" + ($scope.shadowXLocation + $scope.shadowX / 2) + " cy=" + ($scope.shadowYLocation + $scope.shadowX / 2) + " r=" + $scope.shadowX / 2 + " ng-style='shapeStyle' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' class='animated rollIn'/>    </svg>";
+    var linkFn = $compile(template);
+    var content = linkFn($scope);
+    canvas.append(content);
     $scope.showShadow2 = false;
     $scope.toolbarShow = false;
   };
 
   $scope.createRoundedBox = function () {
-    canvas.append("<svg width='100%' height='100%'><rect x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " rx='20' ry='20' width=" + $scope.shadowX + " height=" + $scope.shadowY + " style='fill:" + $scope.elementColor + ";stroke:black;stroke-width:1;opacity:0.8;cursor:move;' />    </svg>");
+    var template = "<svg width='100%' height='100%'><rect ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " rx='20' ry='20' width=" + $scope.shadowX + " height=" + $scope.shadowY + " ng-style='shapeStyle' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' class='animated jello' />    </svg>";
+    var linkFn = $compile(template);
+    var content = linkFn($scope);
+    canvas.append(content);
     $scope.showShadow2 = false;
     $scope.toolbarShow = false;
   };
 
-  // $scope.createBox = function () {
-  //   $scope.boxid = "a" + $scope.number++;
-  //   canvas.append("<svg ng-click='shapeclick' width='100%' height='100%'><rect ng-mouseover='mouseenter($event)' ng-mouseleave=mouseleave($event) id= " + $scope.boxid + " x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " width=" + $scope.shadowX + " height=" + $scope.shadowY + " style='fill:" + $scope.elementColor + ";stroke:black;stroke-width:1;opacity:0.8;cursor:move;' />  </svg>")
-  //   $scope.showShadow2 = false;
-  //   $scope.toolbarShow = false;
-  //   $document.ready();
-  // }
-
-  // $scope.shapeclick = function(event) {
-  //   $scope.boxid = $(event.target).attr("id");
-  //   console.log($scope.boxid);
-  // }
-  $scope.mouseenter = function (event) {
-    // console.log(event);
-    console.log("mouse enter");
-    $document.on('mousedown', mousedown);
-    $document.on('mouseup', mouseup);
+  $scope.shapeStyle = {
+    "fill": "white",
+    "stroke": "black",
+    "stroke-width": "1",
+    "opacity": "0.8",
+    "cursor": "move"
   };
-  //    $scope.startDraw = function (event) {
-  // -    $scope.showShadow = true;
-  // +    $scope.toolbarShow = false;
-  // +    $scope.x1 = 0;
-  // +    $scope.x2 = 0;
-  // +    $scope.y1 = 0;
-  // +    $scope.y2 = 0;
-  // +    $scope.tempXLocation = 0;
-  // +    $scope.tempYLocation = 0;
-  // +    $scope.shadowX = 0;
-  // +    $scope.shadowY = 0;
-  // +    $scope.shapeHeight = 0;
-  // +    $scope.shapeWidth = 0;
-  // +    $scope.showShadow = false;
-  //      $scope.showShadow2 = false;
-  //      $scope.tempXLocation = event.clientX;
-  //      $scope.tempYLocation = event.clientY;
-  // +    $scope.toolbarShow = false;
-  // +    event.preventDefault();
-  // +    $document.on("mousemove", draw);
+
+  $scope.allowDrawFunc = function () {
+    $scope.allowDraw = true;
+  };
+
+  $scope.disableDrawFunc = function (event) {
+    $scope.shapeID = event.target.attributes.id.nodeValue;
+    $scope.allowDrag = true;
+    $scope.allowDraw = false;
+    $document.on('mouseup', dropShape);
+  };
+
+  $scope.dragRect = function (event) {
+    var moveRect = angular.element(document.querySelector('#' + $scope.shapeID));
+    if ($scope.allowDrag) {
+      $scope.shapeToolbarShow = false;
+      moveRect.attr("x", event.clientX - event.target.attributes.width.nodeValue / 2);
+      moveRect.attr('y', event.clientY - 60 - event.target.attributes.height.nodeValue / 2);
+    }
+  };
+
+  $scope.dragEllipse = function (event) {
+    var moveEllipse = angular.element(document.querySelector('#' + $scope.shapeID));
+    if ($scope.allowDrag) {
+      $scope.shapeToolbarShow = false;
+      moveEllipse.attr("cx", event.clientX);
+      moveEllipse.attr('cy', event.clientY - 60);
+    }
+  };
+  $scope.dragCircle = function (event) {
+    var moveCircle = angular.element(document.querySelector('#' + $scope.shapeID));
+    if ($scope.allowDrag) {
+      $scope.shapeToolbarShow = false;
+      moveCircle.attr("cx", event.clientX);
+      moveCircle.attr('cy', event.clientY - 60);
+    }
+  };
+
+  function dropShape(event) {
+    $scope.allowDrag = false;
+    var moveShape = angular.element(document.querySelector('#' + $scope.shapeID));
+    moveShape.attr("id", "dynamicId" + event.clientX + event.clientY);
+  }
+
+  $scope.showRectToolbar = function (event) {
+    console.log($scope.shapeID);
+    $scope.shapeToolbarShow = true;
+    var shapeToolbarY = event.target.attributes.y.nodeValue.toString() + "px";
+    var shapeToolbarX = event.target.attributes.x.nodeValue.toString() + "px";
+    $scope.shapeToolbarStyle = {
+      "position": "absolute",
+      "top": shapeToolbarY,
+      "left": shapeToolbarX
+    };
+    $scope.shapeStyle = {
+      "fill": $scope.elementColor,
+      "stroke": "blue",
+      "stroke-width": "2",
+      "opacity": "0.8",
+      "cursor": "move"
+    };
+    var shapeClass = angular.element(document.querySelector('#' + $scope.shapeID));
+    console.log(shapeClass);
+    shapeClass.addClass("button");
+  };
+
+  $scope.showCircleToolbar = function (event) {
+    $scope.shapeToolbarShow = true;
+    var shapeToolbarY = event.target.attributes.cy.nodeValue - event.target.attributes.r.nodeValue + "px";
+    var shapeToolbarX = event.target.attributes.cx.nodeValue - event.target.attributes.r.nodeValue + "px";
+    $scope.shapeToolbarStyle = {
+      "position": "absolute",
+      "top": shapeToolbarY,
+      "left": shapeToolbarX
+    };
+    $scope.shapeStyle = {
+      "fill": $scope.elementColor,
+      "stroke": "blue",
+      "stroke-width": "2",
+      "opacity": "0.8",
+      "cursor": "move"
+    };
+  };
+
+  $scope.showEllipseToolbar = function (event) {
+    $scope.shapeToolbarShow = true;
+    var shapeToolbarY = event.target.attributes.cy.nodeValue - event.target.attributes.ry.nodeValue + "px";
+    var shapeToolbarX = event.target.attributes.cx.nodeValue - event.target.attributes.rx.nodeValue + "px";
+    $scope.shapeToolbarStyle = {
+      "position": "absolute",
+      "top": shapeToolbarY,
+      "left": shapeToolbarX
+    };
+    $scope.shapeStyle = {
+      "fill": $scope.elementColor,
+      "stroke": "blue",
+      "stroke-width": "2",
+      "opacity": "0.8",
+      "cursor": "move"
+    };
+  };
 });
 'use strict';
 
