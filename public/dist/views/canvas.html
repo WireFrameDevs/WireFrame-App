@@ -1,10 +1,7 @@
-<h1>Canvas</h1>
+<div id="toolbar">
 
-
-<div class="" style="">
-
-  <div style="width:100%;height:80vh; background:white" ng-mousemove="myFunc($event); draw($event)" ng-mousedown="startDraw($event)" ng-mouseup="endDraw($event)">
-    <svg id="canvas" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="cursor:crosshair;">
+  <div ng-mouseenter="mouseenter($event)" style="width:100%;height:90vh;z-index:-1; background:white" ng-mousemove="myFunc($event)" ng-mousedown="startDraw($event)" ng-mouseup="endDraw($event)">
+    <svg id="canvas" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="cursor:crosshair;pointer-events:none;z-index:-1;">
       <defs>
         <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
           <path d="M 8 0 L 0 0 0 8" fill="none" stroke="grey" stroke-width="0.5"/>
@@ -16,26 +13,33 @@
       </defs>
 
         <rect ng-show="showShadow" x="{{xLocation}}" y="{{yLocation}}" width="{{ shapeWidth }}" height="{{ shapeHeight }}" style="fill:rgba(78,139,168,0.3);stroke-width:1;stroke:rgb(0,0,0)" />
-        <rect ng-show="showShadow2" x="{{shadowXLocation}}" y="{{shadowYLocation}}" width="{{ shadowX }}" height="{{ shadowY }}" style="fill:rgba(78,139,168,0.3);stroke-width:1;stroke:rgb(0,0,0)" />
+        <rect ng-show="showShadow2" x="{{shadowXLocation}}" y="{{shadowYLocation}}" width="{{ shadowX }}" height="{{ shadowY }}" style="fill:rgba(0,0,168,0.3);stroke-width:1;stroke:rgb(0,0,0)" />
 
 
       <rect width="100%" height="100%" fill="url(#grid)" />
     </svg>
   </div>
-<button ng-click="createBox()">Box</button>
+
+  <div id="toolbar">
+      <div ng-if="toolbarShow" ng-style="{{toolbarStyle}}"> 
+          <ul>
+              <li class="button" ng-click="createBox()">Box</li>
+              <li class="button" ng-click="createCircle()">Circle</li>
+              <li class="button" ng-click="createEllipse()">Ellipse</li>
+              <li class="button" ng-click="createRoundedBox()">Rounded Box</li>
+          </ul>
+      </div>
+  </div>
+<!--<button ng-click="createBox()">Box</button>
 <button ng-click="createCircle()">Circle</button>
 <button ng-click="createEllipse()">Ellipse</button>
 <button ng-click="createRoundedBox()">Rounded Box</button>
-<label for="pickAColor" type="color">Pick-a-Color</label>
+<label for="pickAColor" type="color">Pick-a-Color</label>-->
 <input type="color" ng-model="elementColor" id="pickAColor">
+<!--<svg width="300" height="300">
+  <circle id={{boxid}} cx="100" cy="100" r="40" style='fill:red;stroke:black;stroke-width:5;opacity:0.8;cursor:move;' ng-mouseenter="mouseenter($event)" ng-mouseleave="mouseleave($event)" />
+</svg>-->
 
 
-  <p>Coordinates: {{ x + ', ' + y }}</p>
+  <span>Coordinates: {{ x + ', ' + y }}</span>
 </div>
-<!-- <svg width='100%' height=400px>
-  <rect x='50' y='20' rx='20' ry='20' width='150' height='150' style='fill:red;stroke:black;stroke-width:5;opacity:0.5x;z-index:9999999999' />
-</svg> -->
-
-<svg width="300" height="300">
-  <circle cx="100" cy="100" r="40" style='fill:red;stroke:black;stroke-width:5;opacity:0.8;cursor:move;'  />
-</svg>
