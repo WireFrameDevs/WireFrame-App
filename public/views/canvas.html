@@ -1,7 +1,7 @@
 <div id="toolbar">
 
-  <div ng-mouseenter="mouseenter($event)" style="width:100%;height:90vh;z-index:-1; background:white" ng-mousemove="myFunc($event)" ng-mousedown="startDraw($event)" ng-mouseup="endDraw($event)">
-    <svg id="canvas" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="cursor:crosshair;pointer-events:none;z-index:-1;">
+  <div style="width:100%;height:90vh;z-index:-1; background:white" ng-mousemove="myFunc($event)" ng-mousedown="startDraw($event)" ng-mouseup="endDraw($event)">
+    <svg id="canvas" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="cursor:crosshair;z-index:-1;">
       <defs>
         <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
           <path d="M 8 0 L 0 0 0 8" fill="none" stroke="grey" stroke-width="0.5"/>
@@ -21,7 +21,7 @@
   </div>
 
   <div id="toolbar">
-      <div ng-if="toolbarShow" ng-style="{{toolbarStyle}}"> 
+      <div ng-if="toolbarShow" ng-style="{{toolbarStyle}}">
           <ul>
               <li class="button" ng-click="createBox()">Box</li>
               <li class="button" ng-click="createCircle()">Circle</li>
@@ -30,16 +30,15 @@
           </ul>
       </div>
   </div>
-<!--<button ng-click="createBox()">Box</button>
-<button ng-click="createCircle()">Circle</button>
-<button ng-click="createEllipse()">Ellipse</button>
-<button ng-click="createRoundedBox()">Rounded Box</button>
-<label for="pickAColor" type="color">Pick-a-Color</label>-->
-<input type="color" ng-model="elementColor" id="pickAColor">
-<!--<svg width="300" height="300">
-  <circle id={{boxid}} cx="100" cy="100" r="40" style='fill:red;stroke:black;stroke-width:5;opacity:0.8;cursor:move;' ng-mouseenter="mouseenter($event)" ng-mouseleave="mouseleave($event)" />
-</svg>-->
+  <div id="ShapeToolbar">
+      <div ng-if="shapeToolbarShow" ng-style="{{ shapeToolbarStyle }}">
+          <ul>
+            <input type="color" ng-model="elementColor" id="pickAColor">
+              <li class="button" ng-click="deleteShape()">delete</li>
+          </ul>
+      </div>
+  </div>
 
 
-  <span>Coordinates: {{ x + ', ' + y }}</span>
+
 </div>
