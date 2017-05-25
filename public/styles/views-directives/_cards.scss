@@ -1,5 +1,4 @@
-@import '_variables';
-@import '_mixins';
+
 .card{
     //Below mixin takes 'warm', 'cool', 'value'
     @include use-linear-gradients(value);
@@ -32,6 +31,7 @@
     box-shadow: $card-shadow;
     margin: 40px 40px;
     border-radius: $border-radius-huge;
+    color: rgba(26,27,31,1);
 
     .add-new{
         height: 100%;
