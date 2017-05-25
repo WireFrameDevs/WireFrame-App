@@ -1,71 +1,48 @@
-<div class="sidebar"></div>
-<div class="background-wrapper">
 
-    <div class="content">
-        <h1>HOME SPLASH</h1>
 
-        <h3>Buttons</h3>
-        <button>btn</button>
+        <a class="button green" href="/auth" ><div class="shine"></div>Get Started</a>
 
-        <h3>Icons</h3>
-        <i class="material-icons icon-small">access_time</i>
-        <i class="material-icons icon-large">access_time</i>
+        
+        
 
-        <div class="card-add">
-            <div class="add-new">
-                <i class="material-icons icon-extra-large">add_circle_outline</i>
-                <h4>New Project</h4>
-            </div>
-        </div>
+        
 
-        <div class="card">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
-                        <path d="M 8 0 L 0 0 0 8" fill="none" stroke="black" stroke-width="0.2"/>
-                    </pattern>
-                    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
-                        <rect width="80" height="80" fill="url(#smallGrid)"/>
-                    </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#grid)"/>
-            </svg>
-            <div class="card-footer">
+
+
+        <!--GOES IN CANVAS-->
+        <div>
+            <form>
                 <p>Project Name</p>
-                <i class="material-icons">star_border</i>
-            </div>
-        </div>
-
-        <div class="card">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
-                        <path d="M 8 0 L 0 0 0 8" fill="none" stroke="black" stroke-width="0.2"/>
-                    </pattern>
-                    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
-                        <rect width="80" height="80" fill="url(#smallGrid)"/>
-                    </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#grid)"/>
-            </svg>
-            <div class="card-footer">
-                <p>Project Name</p>
-                <i class="material-icons">star_border</i>
-            </div>
+                <input type="text" ng-model="projectData.wf_name" placeholder="Project Name">
+                <br>
+                <p>Wireframe</p>
+                <input type="text" ng-model="projectData.wf_text" placeholder="HTML / WIREFRAME">
+                <br>
+                <p>Favorite? | true or false</p>
+                <input type="checkbox" ng-model="projectData.fav_wf" ng-init="projectData.fav_wf = false" placeholder="true || false">
+            </form>
+            <button ng-click="newProject(projectData)">SAVE</button>
         </div>
 
 
-        <h3>Typography</h3>
-        <h1>heading 1</h1>
-        <h2>heading 2</h2>
-        <h3>heading 3</h3>
-        <h4>heading 4</h4>
-        <h5>heading 5</h5>
-        <h6>heading 6</h6>
-        <p>paragraph</p>
-    </div>
-    <div class="main-bg-overlay"></div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

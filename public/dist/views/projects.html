@@ -1,1 +1,93 @@
-<h1>Projects</h1>
+<div class="view-wrapper">
+    <div class="sidebar">
+        <div class="sidebar-menu">
+            <div class="sidebar-item">
+                <i class="material-icons icon-large">folder_open</i>
+                <p>All Projects</p>
+            </div>
+            <div class="sidebar-item">
+                <i class="material-icons icon-large">access_time</i>
+                <p>Recent</p>
+            </div>
+            <div class="sidebar-item">
+                <i class="material-icons icon-large">star</i>
+                <p>Starred</p>
+            </div>
+
+        </div>
+        
+
+    </div>
+
+    <div class="content">
+        <h3>Projects</h3>
+
+        <!--CARDS-->
+        <div class="card-add">
+            <div class="add-new">
+                <i class="material-icons icon-extra-large">add_circle_outline</i>
+                <h4>New Project</h4>
+            </div>
+        </div>
+
+        <div class="card" ng-repeat="project in projects">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
+                        <path d="M 8 0 L 0 0 0 8" fill="none" stroke="black" stroke-width="0.2" />
+                    </pattern>
+                    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+                        <rect width="80" height="80" fill="url(#smallGrid)" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+
+            <div class="card-footer">
+                <p>{{project.wf_name}}</p>
+
+
+                <!--EMPTY STAR-->
+                <div ng-click="favorited = !favorited" ng-show="favorited">
+                    <i class="material-icons star">star_border</i>
+                </div>
+                <!--Filled STAR-->
+                <div ng-click="favorited = !favorited" ng-hide="favorited">
+                    <i class="material-icons star">star</i>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="main-bg-overlay"></div>
+    </div>
+</div>
+<h2>Welcome {{currentUser.username}}.</h2>
+
+<!--<p style="color: white">
+    ID: {{currentUser.id}}<br> username: {{currentUser.username}}<br> emal: {{currentUser.email}}<br> auth id: {{currentUser.auth_id}}<br>
+</p>-->
+<!--<div ng-show="isLoggedIn">
+    <div ng-repeat="project in projects" style="color: white">
+        <p>WF ID: {{project.wf_id}} </p>
+        <p>Name: {{project.wf_name}} </p>
+        <p>Wireframe: {{project.wf_text}} </p>
+        <p>Favorite: {{project.fav_wf}} </p>
+        <p>User ID: {{project.user_id}} </p>
+        <button>EDIT</button>
+        <button ng-click="deleteProject(project.wf_id)">DELETE</button>
+        <br><br>
+    </div>
+</div>-->
+
+
+
+
+
+
+
+
+        <!--BACKGROUND (fix later)-->
+        <div class="background-wrapper">
+
+    
