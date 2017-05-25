@@ -16,6 +16,11 @@ angular.module('app', ['ui.router', 'ngAnimate']).config(function ($stateProvide
         templateUrl: './views/canvas.html',
         controller: 'canvasCtrl',
         authenticate: true
+    }).state('mycanvas', {
+        url: '/canvas/:id',
+        templateUrl: './views/canvas.html',
+        controller: 'canvasCtrl',
+        authenticate: true
     });
     // console.log($urlRouterProvider)
     $urlRouterProvider.otherwise('/');
@@ -187,7 +192,7 @@ angular.module('app').controller('mainCtrl', function ($scope, mainService, $loc
 angular.module('app').controller('projectsCtrl', function ($scope, mainService, $rootScope, $location) {
 
     function getUser() {
-        console.log('getUser function ran!');
+        // console.log('getUser function ran!');
         mainService.getUser().then(function (user) {
             if (user) {
                 $rootScope.currentUser = user;
@@ -197,15 +202,19 @@ angular.module('app').controller('projectsCtrl', function ($scope, mainService, 
                 $scope.getProjects = function () {
                     mainService.getAllProjects(userId).then(function (response) {
                         $scope.projects = response;
-                        console.log(response);
-                        if ($scope.projects.fav_wf === true) {
-                            $scope.favorited = true;
-                        } else {
-                            $scope.favorited = false;
-                        }
                     });
                 };
+
                 $scope.getProjects();
+
+                $scope.updateFav = function (isFav, index) {
+                    $scope.projects[index].fav_wf = !isFav.fav_wf;
+                    isFav.fav_wf = !isFav.fav_wf;
+
+                    mainService.updateFav(isFav).then(function (response) {
+                        $scope.newFav = response;
+                    });
+                };
 
                 //Goes in Canvas Ctrl
                 $scope.newProject = function (projectData) {
@@ -235,9 +244,6 @@ angular.module('app').controller('projectsCtrl', function ($scope, mainService, 
         });
     }
     $scope.callUser = getUser();
-
-    //PROJECTS
-
 });
 'use strict';
 
@@ -245,13 +251,11 @@ angular.module('app').directive('navBar', function () {
     return {
         restrict: 'E',
         templateUrl: './views/directives/navBar.html',
-        link: function link(scope, elem, attrs) {},
-        controller: function controller($scope, mainService, $location, $stateParams) {
+        controller: function controller($scope, mainService) {
             $scope.logout = mainService.logout;
-            console.log($location.path());
-            // $scope.isActive = function(viewLocation) {
-            //     return viewLocation === '/canvas';
-            // };
+            if (!$scope.projectName) {
+                $scope.projectName = 'Untitled';
+            }
         }
     };
 });
@@ -290,6 +294,16 @@ angular.module('app').service('mainService', function ($http) {
     });
   };
 
+  this.updateFav = function (isFav) {
+    return $http({
+      method: 'PUT',
+      url: baseurl + 'api/project/fav',
+      data: isFav
+    }).then(function (response) {
+      return response.data;
+    });
+  };
+
   this.deleteProject = function (projectId) {
     return $http({
       method: 'DELETE',
@@ -304,7 +318,6 @@ angular.module('app').service('mainService', function ($http) {
       method: 'GET',
       url: '/auth/me'
     }).then(function (res) {
-      console.log("getting user data from DB", res.data);
       return res.data;
     }).catch(function (err) {
       return err;
