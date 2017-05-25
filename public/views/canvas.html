@@ -30,16 +30,15 @@
           </ul>
       </div>
   </div>
-<!--<button ng-click="createBox()">Box</button>
-<button ng-click="createCircle()">Circle</button>
-<button ng-click="createEllipse()">Ellipse</button>
-<button ng-click="createRoundedBox()">Rounded Box</button>
-<label for="pickAColor" type="color">Pick-a-Color</label>-->
-<input type="color" ng-model="elementColor" id="pickAColor">
-<!--<svg width="300" height="300">
-  <circle id={{boxid}} cx="100" cy="100" r="40" style='fill:red;stroke:black;stroke-width:5;opacity:0.8;cursor:move;' ng-mouseenter="mouseenter($event)" ng-mouseleave="mouseleave($event)" />
-</svg>-->
+  <div id="ShapeToolbar">
+      <div ng-if="shapeToolbarShow" ng-style="{{ shapeToolbarStyle }}">
+          <ul>
+            <input type="color" ng-model="elementColor" id="pickAColor">
+              <li class="button" ng-click="deleteShape()">delete</li>
+          </ul>
+      </div>
+  </div>
 
 
-  <span>Coordinates: {{ x + ', ' + y }}</span>
+
 </div>
