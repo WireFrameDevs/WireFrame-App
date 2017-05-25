@@ -11,16 +11,24 @@
             <img src="./images/WireframeLogo-03.svg" style="height: 30px; margin-left: 30px">
             <input type="text" placeholder="Search projects" style="margin-left: 80px">
         </div>
-        <div class="nav-item">
-            <h4>Project Title</h4>
+
+        <div class="nav-item" ng-hide="editorEnabled">
+            <h4>{{projectName}}</h4>
+            <a style="color: white" ng-click="editorEnabled =! editorEnabled">Edit</a>
         </div>
+        <div ng-show="editorEnabled">
+            <input ng-model="projectName">
+            <a style="color: white" ng-click="editorEnabled =! editorEnabled">Save</a>
+        </div>
+
+
         <div class="nav-item">
             <!--SAVE PROJECT-->
-            <div class="button blue" ng-show="isActive('/canvas')"><div class="shine"></div>Save</div>
+            <div class="button blue" ng-if="'canvas' | isState"><div class="shine"></div>Save</div>
             <!--Log-IN-->
-            <a class="button green" href="/auth" ng-if="isLoggedIn"><div class="shine"></div>Log In</a>
+            <a class="button green" href="/auth" ng-if="!isLoggedIn"><div class="shine"></div>Log In</a>
             <!--SIGN UP-->
-            <a class="button green" href="/auth" ng-if="isLoggedIn"><div class="shine "></div>Sign Up</a>
+            <a class="button green" href="/auth" ng-if="!isLoggedIn"><div class="shine "></div>Sign Up</a>
             <!--LOGOUT-->
             <a class="button red" href="/auth/logout" ng-if="isLoggedIn"><div class="shine"></div>Log Out</a>
             <img class="prof-pic" ng-src="{{currentUser.picture}}">

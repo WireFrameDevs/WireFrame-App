@@ -1,7 +1,7 @@
 angular.module('app').controller('projectsCtrl', function($scope, mainService, $rootScope, $location){
 
     function getUser() {
-        console.log('getUser function ran!');
+        // console.log('getUser function ran!');
         mainService.getUser().then((user) => {
             if (user) {
                 $rootScope.currentUser = user;
@@ -11,15 +11,19 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                 $scope.getProjects = () => {
                     mainService.getAllProjects(userId).then((response) => {
                         $scope.projects = response;
-                        console.log(response);
-                        if ($scope.projects.fav_wf === true) {
-                            $scope.favorited = true;
-                        } else {
-                            $scope.favorited = false;
-                        }
                     });
                 }
+                
                 $scope.getProjects();
+
+                $scope.updateFav = (isFav, index) => {
+                    $scope.projects[index].fav_wf = !isFav.fav_wf;
+                    isFav.fav_wf = !isFav.fav_wf;
+
+                    mainService.updateFav(isFav).then((response) => {
+                        $scope.newFav = response;
+                    });
+                }
 
 
                 //Goes in Canvas Ctrl
@@ -50,12 +54,7 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
             }
         });
     }
-    $scope.callUser = getUser();
-
-
-
-//PROJECTS
-    
+    $scope.callUser = getUser();    
 
 
 })

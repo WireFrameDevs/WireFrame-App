@@ -26,6 +26,14 @@ module.exports = {
   	});
   },
 
+  updateFav: (req, res) => {
+    let isFav = [req.body.wf_id, req.body.fav_wf];
+
+    db.update_fav(isFav, (err, newFav) => {
+      (!err) ? res.send(newFav) : res.send(err);
+    });
+  },
+
   deleteProject: (req, res) => {
   	let proId = [parseInt(req.params.wf_id)];
     

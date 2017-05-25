@@ -19,6 +19,12 @@ angular.module('app', ['ui.router', 'ngAnimate'])
                 controller: 'canvasCtrl',
                 authenticate: true
             })
+            .state('mycanvas', {
+                url: '/canvas/:id',
+                templateUrl: './views/canvas.html',
+                controller: 'canvasCtrl',
+                authenticate: true
+            })
             // console.log($urlRouterProvider)
             $urlRouterProvider.otherwise('/');
 });
