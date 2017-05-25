@@ -45,9 +45,10 @@ angular.module('app').service('mainService', function($http){
       method: 'GET',
       url: '/auth/me'
     }).then((res) => {
+      console.log("getting user data from DB",res.data);
       return res.data;
     }).catch((err) => {
-      console.log(err);
+      return err;
     });
   }
 

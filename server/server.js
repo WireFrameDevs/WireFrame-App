@@ -43,7 +43,7 @@ passport.use(new Auth0Strategy({
             user = user[0];
             if (!user) {
                 console.log('CREATING USER');
-                db.create_user([profile.displayName, profile.emails[0].value, profile.picture, profile.id], function (err, user) {
+                db.create_user([profile.name.givenName, profile.emails[0].value, profile.picture, profile.id], function (err, user) {
                     console.log('USER CREATED', user);
                     return done(err, user[0]);
                 })
@@ -70,7 +70,7 @@ passport.deserializeUser(function (userB, done) {
 
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback',
-  passport.authenticate('auth0', {successRedirect: '/'}), function(req, res) {
+  passport.authenticate('auth0', {successRedirect: '/#!/projects', failureRedirect: '/#!/'}), function(req, res) {
     res.status(200).send(req.user);
 });
 

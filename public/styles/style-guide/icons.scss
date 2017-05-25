@@ -1,3 +1,5 @@
+@import 'colors';
+@import '_variables';
 .icon-small{
     font-size: 24px !important;
 }
@@ -15,3 +17,9 @@
 //   font-style: normal;
 //   font-size: 24px;
 // }
+
+.star{
+    cursor: pointer;
+    color: $yellow-A700;
+    font-size: 30px !important;
+}
