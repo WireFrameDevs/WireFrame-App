@@ -31,6 +31,16 @@ angular.module('app').service('mainService', function($http){
   	});
   }
 
+  this.updateFav = (isFav) => {
+    return $http({
+      method: 'PUT',
+      url: baseurl + 'api/project/fav',
+      data: isFav
+    }).then((response) => {
+      return response.data;
+    });
+  }
+
   this.deleteProject = (projectId) => {
   	return $http({
   		method: 'DELETE',
@@ -45,7 +55,6 @@ angular.module('app').service('mainService', function($http){
       method: 'GET',
       url: '/auth/me'
     }).then((res) => {
-      console.log("getting user data from DB",res.data);
       return res.data;
     }).catch((err) => {
       return err;

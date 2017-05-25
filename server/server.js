@@ -88,6 +88,7 @@ app.get('/auth/logout', function(req, res) {
 app.get("/api/projects/:id", serverCtrl.getProjects);
 app.post("/api/projects", serverCtrl.createProject);
 app.put("/api/project", serverCtrl.updateProject);
+app.put("/api/project/fav", serverCtrl.updateFav);
 app.delete("/api/projects/:wf_id", serverCtrl.deleteProject);
 
 app.listen(port, () => console.log('Wireframe app is wired on port:', port));

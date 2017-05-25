@@ -15,7 +15,6 @@
             </div>
 
         </div>
-        
 
     </div>
 
@@ -44,15 +43,15 @@
             </svg>
 
             <div class="card-footer">
-                <p>{{project.wf_name}}</p>
+                <p ng-model="isFav.wf_id" ng-init="isFav.wf_id=project.wf_id" ui-sref="mycanvas({id: project.wf_id})">{{project.wf_name}}</p>
 
 
                 <!--EMPTY STAR-->
-                <div ng-click="favorited = !favorited" ng-show="favorited">
+                <div ng-model="isFav.fav_wf" ng-init="isFav.fav_wf=project.fav_wf" ng-click="updateFav(isFav, $index)" ng-hide="project.fav_wf">
                     <i class="material-icons star">star_border</i>
                 </div>
                 <!--Filled STAR-->
-                <div ng-click="favorited = !favorited" ng-hide="favorited">
+                <div ng-model="isFav.fav_wf" ng-init="isFav.fav_wf=project.fav_wf" ng-click="updateFav(isFav, $index)" ng-show="project.fav_wf">
                     <i class="material-icons star">star</i>
                 </div>
             </div>
