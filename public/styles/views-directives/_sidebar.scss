@@ -1,7 +1,8 @@
 .sidebar{
     width: 300px;
     height: 100vh;
-    background: #1A1B1F;
+    background: url('../../images/large.png') no-repeat center center fixed;
+    background-size: cover;
     box-shadow: 5px 0px 7px 0px #000;
     display: flex;
     flex-direction: column;

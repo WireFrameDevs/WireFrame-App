@@ -4,6 +4,7 @@
             <div class="bar"></div>
         </div>-->
         <div class="shine2"></div>
+       
     </nav>
     <div class="nav-onTop">
         <div class="nav-item">
@@ -19,7 +20,10 @@
                     <i class="material-icons icon-small font-white" ng-click="editorEnabled=! editorEnabled">mode_edit</i>
                 </div>
                 <div class="nav-item" ng-show="editorEnabled">
-                    <input class="titleEdit" ng-model="projectName">
+                    <form ng-submit="editorEnabled=!editorEnabled">
+                        <input class="titleEdit" ng-model="projectName" >
+
+                    </form>
                     <i class="material-icons icon-small font-white" ng-click="editorEnabled=! editorEnabled">check</i>
                 </div>
             </div>
@@ -49,7 +53,5 @@
             <a class="button red" href="/auth/logout" ng-if="isLoggedIn"><div class="shine"></div>Log Out</a>
             <img class="prof-pic" ng-src="{{currentUser.picture}}">
         </div>
-
     </div>
-    
 </div>

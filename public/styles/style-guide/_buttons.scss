@@ -73,11 +73,11 @@
 .button:hover .shine {left: 24px;}
 .button:active .shine {opacity: 0;}
 
-.button.gray {background: #555}
-.button.blue {background: #6eabe5}
-.button.green {background: #2CA975}
-.button.red {background: #F25A78}
-.button.purple {background: #857BCE}
-.button.orange {background: #ffae7c}
-.button.black {background: #000}
+.button.gray {background: $brand-gray}
+.button.blue {background: $brand-blue}
+.button.green {background: $brand-green}
+.button.red {background: $brand-red}
+.button.purple {background: $brand-purple}
+.button.orange {background: $brand-orange}
+.button.black {background: $brand-black}
 // ​

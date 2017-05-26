@@ -9,11 +9,17 @@ html{
     width: 100vw;
     background: rgba(255,255,255,0.6);
     padding: 50px;
+    z-index: -1;
 
+    .main-content-wrap{
+        display: flex;
+        flex-wrap: wrap;
+    }
 }
 
 .view-wrapper{
     display: flex;
+    z-index: -2;
 }
 
 
@@ -108,3 +114,6 @@ canvas {
 //         margin-right: auto;
 //     }
 // }
+
+
+

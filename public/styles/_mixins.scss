@@ -18,11 +18,11 @@
 
 @mixin use-linear-gradients($color){
     @if $color == warm{
-        @include linear-gradient(#FF4CAD, #374BDC);
+        @include linear-gradient($brand-red, $brand-orange);
     }@else if $color == cool{
-        @include linear-gradient(#4DE4FA, #374BDC);
+        @include linear-gradient($brand-blue, #374BDC);
     }@else{
-        @include linear-gradient(#4CFF6E, #374BDC);
+        @include linear-gradient($brand-green, $brand-blue);
     }
 }
 
