@@ -122,35 +122,44 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
   }
 
   $scope.createBox = function () {
-    let template = ("<svg class='draggable' width='100%' height='100%'><rect ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='black' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' />  </svg>")
+    let template = ("<svg class='draggable' width='100%' height='100%'><rect ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' />  </svg>")
     let linkFn = $compile(template);
     let content = linkFn($scope);
     canvas.append(content);
     $scope.showShadow2 = false;
     $scope.toolbarShow = false;
+    $scope.shapeClass = angular.element(document.querySelector('#dynamicId' + $scope.tempXLocation + $scope.tempYLocation))
+    console.log($scope.shapeClass);
+    $scope.showRectToolbar("whatever", $scope.shadowXLocation, $scope.shadowYLocation);
   }
 
 
   $scope.createEllipse = function () {
-    let template = ("<svg width='100%' height='100%'><ellipse ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragEllipse($event)' ng-click='showEllipseToolbar($event)' cx=" + ($scope.shadowXLocation + ($scope.shadowX / 2)) + " cy=" + ($scope.shadowYLocation + ($scope.shadowY / 2)) + " rx=" + ($scope.shadowX / 2) + " ry=" + ($scope.shadowY / 2) + " stroke='black' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' />    </svg>")
+    let template = ("<svg width='100%' height='100%'><ellipse ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragEllipse($event)' ng-click='showEllipseToolbar($event)' cx=" + ($scope.shadowXLocation + ($scope.shadowX / 2)) + " cy=" + ($scope.shadowYLocation + ($scope.shadowY / 2)) + " rx=" + ($scope.shadowX / 2) + " ry=" + ($scope.shadowY / 2) + " stroke='red' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' />    </svg>")
     let linkFn = $compile(template);
     let content = linkFn($scope);
     canvas.append(content);
     $scope.showShadow2 = false;
     $scope.toolbarShow = false;
+    $scope.shapeClass = angular.element(document.querySelector('#dynamicId' + $scope.tempXLocation + $scope.tempYLocation))
+    console.log($scope.shapeClass);
+    $scope.showRectToolbar("whatever", $scope.shadowXLocation, $scope.shadowYLocation);
   }
 
   $scope.createCircle = function () {
-    let template = ("<svg width='100%' height='100%'><circle ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragCircle($event)' ng-click='showCircleToolbar($event)' cx=" + ($scope.shadowXLocation + ($scope.shadowX / 2)) + " cy=" + ($scope.shadowYLocation + ($scope.shadowX / 2)) + " r=" + ($scope.shadowX / 2) + " stroke='black' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' />    </svg>")
+    let template = ("<svg width='100%' height='100%'><circle ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragCircle($event)' ng-click='showCircleToolbar($event)' cx=" + ($scope.shadowXLocation + ($scope.shadowX / 2)) + " cy=" + ($scope.shadowYLocation + ($scope.shadowX / 2)) + " r=" + ($scope.shadowX / 2) + " stroke='red' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' />    </svg>")
     let linkFn = $compile(template);
     let content = linkFn($scope);
     canvas.append(content);
     $scope.showShadow2 = false;
     $scope.toolbarShow = false;
+    $scope.shapeClass = angular.element(document.querySelector('#dynamicId' + $scope.tempXLocation + $scope.tempYLocation))
+    console.log($scope.shapeClass);
+    $scope.showRectToolbar("whatever", $scope.shadowXLocation, $scope.shadowYLocation);
   }
 
   $scope.createRoundedBox = function () {
-    let template = ("<svg width='100%' height='100%'><rect ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " rx='20' ry='20' width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' is-selected='false' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "'  />    </svg>");
+    let template = ("<svg width='100%' height='100%'><rect ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " rx='20' ry='20' width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' is-selected='false' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "'  />    </svg>");
     let linkFn = $compile(template);
     let content = linkFn($scope);
     canvas.append(content);
@@ -171,6 +180,7 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
     $scope.shapeID = event.target.attributes.id.nodeValue;
     $scope.allowDrag = true;
     $scope.allowDraw = false;
+    $scope.shapeToolbarShow = false;
     $document.on('mouseup', dropShape)
     $scope.shapeClass = angular.element(document.querySelector('#' + $scope.shapeID))
     console.log($scope.shapeClass);
@@ -208,34 +218,42 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
   function dropShape(event) {
     $scope.allowDrag = false;
     let moveShape = angular.element(document.querySelector('#' + $scope.shapeID));
-    moveShape.attr("id", ("dynamicId" + event.clientX + event.clientY))
+    moveShape.attr("id", ("dynamicId" + event.clientX + event.clientY));
+    $scope.showRectToolbar(event);
   }
 
   $scope.showRectToolbar = function(event, creationX, creationY) {
-    console.log($scope.shapeID);
-    $scope.shapeToolbarShow = true;
+    console.log("showRectToolbar is firing!");
     if (!creationX) {
+      console.log("No creationX!");
+      console.log(event.target.attributes.y.nodeValue.toString());
+      console.log(event.target.attributes.x.nodeValue.toString());
       let shapeToolbarY = event.target.attributes.y.nodeValue.toString() + "px";
       let shapeToolbarX = event.target.attributes.x.nodeValue.toString() + "px";
+      console.log(shapeToolbarX);
+      console.log(shapeToolbarY);
       $scope.shapeToolbarStyle = {
         "position": "absolute",
         "top": shapeToolbarY,
         "left": shapeToolbarX
       }
     } else {
-        let shapeToolbarY = creationY + "px";
-        let shapeToolbarX = creationX + "px";
-        $scope.shapeToolbarStyle = {
-          "position": "absolute",
-          "top": shapeToolbarY,
-          "left": shapeToolbarX
-        }
+      console.log("Yes creationX!");
+      let shapeToolbarY = creationY + "px";
+      let shapeToolbarX = creationX + "px";
+      $scope.shapeToolbarStyle = {
+        "position": "absolute",
+        "top": shapeToolbarY,
+        "left": shapeToolbarX
       }
-      console.log($scope.shapeToolbarStyle);
     }
+    $scope.showShadow2 = false;
+    $scope.toolbarShow = false;
+    $scope.shapeToolbarShow = true;
+    console.log($scope.shapeToolbarStyle);
+  }
 
   $scope.showCircleToolbar = function(event) {
-    $scope.shapeToolbarShow = true;
     let shapeToolbarY = (event.target.attributes.cy.nodeValue - event.target.attributes.r.nodeValue) + "px";
     let shapeToolbarX = (event.target.attributes.cx.nodeValue - event.target.attributes.r.nodeValue) + "px";
     $scope.shapeToolbarStyle = {
@@ -250,10 +268,12 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
       "opacity": "0.8",
       "cursor": "move"
     }
+    $scope.showShadow2 = false;
+    $scope.toolbarShow = false;
+    $scope.shapeToolbarShow = true;
   }
 
   $scope.showEllipseToolbar = function(event) {
-    $scope.shapeToolbarShow = true;
     let shapeToolbarY = (event.target.attributes.cy.nodeValue - event.target.attributes.ry.nodeValue) + "px";
     let shapeToolbarX = (event.target.attributes.cx.nodeValue - event.target.attributes.rx.nodeValue) + "px";
     $scope.shapeToolbarStyle = {
@@ -268,6 +288,9 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
       "opacity": "0.8",
       "cursor": "move"
     }
+    $scope.showShadow2 = false;
+    $scope.toolbarShow = false;
+    $scope.shapeToolbarShow = true;
   }
 
 
