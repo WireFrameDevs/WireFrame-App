@@ -12,7 +12,7 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                     mainService.getAllProjects(userId).then((response) => {
                         // All Projects
                         $scope.projects = response;
-
+                        console.log($scope.projects)
                         // Favorite Projects
                         $scope.favProjects = [];
                         for(let i = 0; i < response.length; i++){
@@ -43,7 +43,9 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                                 $scope.projects
                             }
                         }
-                        
+                
+
+
                     });
                 }
                 
