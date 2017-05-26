@@ -10,7 +10,24 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                 let userId = user.id;
                 $scope.getProjects = () => {
                     mainService.getAllProjects(userId).then((response) => {
+                        // All Projects
                         $scope.projects = response;
+
+                        // Favorite Projects
+                        $scope.favProjects = [];
+                        for(let i = 0; i < response.length; i++){
+                            if(response[i].fav_wf === true){
+                                $scope.favProjects.push(response[i]);
+                            }
+                        }
+
+                        // Recent Projects
+                        let recentArr = response.sort(function(a,b){
+                            return new Date(a.wf_date).getTime() - new Date(b.wf_date).getTime();
+                        });
+
+                        (recentArr.length <= 3) ? ($scope.recent = recentArr) : ($scope.recent = recentArr.slice(0, 3));
+                        
                     });
                 }
                 
@@ -29,6 +46,7 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                 //Goes in Canvas Ctrl
                 $scope.newProject = (projectData) => {
                     projectData.user_id = userId;
+                    projectDate.wf_date = new Date();
                     mainService.createProject(projectData).then((response) => {
                         $scope.newPro = response;
                     });
@@ -36,6 +54,7 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
 
                 //Favoriting, deleting shapes, creating shapes, sync project, save existing project.
                 $scope.updateProject = () => {
+                    projectDate.wf_date = new Date();
                     mainService.updateProject(newData).then((response) => {
                         $scope.updated = response;
                     });
