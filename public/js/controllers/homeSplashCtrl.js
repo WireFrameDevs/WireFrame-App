@@ -20,7 +20,7 @@ var waterfallCanvas = function(c, cw, ch){
 				this.loop();
 			};
 			
-			this.reset = function(){				
+			this.reset = function(){
 				this.ctx.clearRect(0,0,this.cw,this.ch);
 				this.particles = [];
 			};
@@ -37,7 +37,7 @@ var waterfallCanvas = function(c, cw, ch){
 				this.vy = 0;
 				this.width = newWidth;
 				this.height = newHeight;
-				this.hue = _this.rand(200, 220);
+				this.hue = _this.rand(500, 520);
 				this.saturation = _this.rand(30, 60);
 				this.lightness = _this.rand(30, 60);
 			};
@@ -155,7 +155,7 @@ var waterfallCanvas = function(c, cw, ch){
 	if(isCanvasSupported()){
 			var c = document.getElementById('waterfall');
 			var cw = c.width = 1920;
-			var ch = c.height = 900;	
+			var ch = c.height = 700;	
 			var waterfall = new waterfallCanvas(c, cw, ch);			  
 			setupRAF();
 			waterfall.init();

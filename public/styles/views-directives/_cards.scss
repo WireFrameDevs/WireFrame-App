@@ -2,13 +2,13 @@
 @import '_mixins';
 .card{
     //Below mixin takes 'warm', 'cool', 'value'
-    @include use-linear-gradients(value);
+    @include use-linear-gradients(warm);
     position: relative;
     width: 300px;
     height: 200px;
     overflow: hidden;
     box-shadow: $card-shadow;
-    margin: 40px 40px;
+    margin: 30px 20px;
     border-radius: $border-radius-huge;
 
     .card-footer{
@@ -30,7 +30,7 @@
     height: 200px;
     overflow: hidden;
     box-shadow: $card-shadow;
-    margin: 40px 40px;
+    margin: 30px 20px;
     border-radius: $border-radius-huge;
 
     .add-new{
@@ -51,7 +51,7 @@
     width: 300px;
     height: 200px;
     overflow: hidden;
-    box-shadow: $card-shadow;
+    box-shadow: none;
     margin: 40px 40px;
     border-radius: $border-radius-huge;
 }

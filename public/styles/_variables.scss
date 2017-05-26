@@ -6,13 +6,22 @@ $app-font-family: 'Open Sans', sans-serif !default;
 $app-font-weight: 300;
 
 //Brand COLORS
-// $brand-default: #cecece !default;
-// $brand-primary: $purple !default;
-// $brand-success: $green !default;
-// $brand-danger: $red !default;
-// $brand-warning: $orange !default;
-// $brand-info: $cyan !default;
-// $brand-rose: $pink !default;
+$brand-default: #cecece !default;
+$brand-primary: $purple !default;
+$brand-success: $green !default;
+$brand-danger: $red !default;
+$brand-warning: $orange !default;
+$brand-info: $cyan !default;
+$brand-rose: $pink !default;
+
+$brand-gray: #555;
+$brand-blue: #6eabe5;
+$brand-green: #37D593;
+$brand-red: #F25A78;
+$brand-purple: #857BCE;
+$brand-orange: #ffae7c;
+$brand-black: #000;
+
 
 $border-radius-base: 3px !default;
 $border-radius-small: 2px !default;
