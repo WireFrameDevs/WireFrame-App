@@ -33,7 +33,7 @@
   <div id="ShapeToolbar">
       <div ng-if="shapeToolbarShow" ng-style="{{ shapeToolbarStyle }}">
           <ul>
-            <input type="color" ng-model="elementColor" id="pickAColor">
+            <input type="color" ng-change="changeShapeColor(elementColor)" ng-model="elementColor" id="pickAColor">
               <li class="button" ng-click="deleteShape()">delete</li>
           </ul>
       </div>
