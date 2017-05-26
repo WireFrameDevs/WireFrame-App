@@ -7,25 +7,25 @@
     </nav>
     <div class="nav-onTop">
         <div class="nav-item">
-            <img src="./images/WireframeLogo-02.svg" style="height: 38px; margin-left: 20px">
+            <img ui-sref="projects" src="./images/WireframeLogo-02.svg" style="height: 38px; margin-left: 20px">
             <!--<img src="./images/WireframeLogo-03.svg" style="height: 30px; margin-left: 30px">-->
             <input type="text" placeholder="Search projects" style="margin-left: 80px" ng-if="'projects' | isState">
         </div>
 
-        <div class="nav-item" ng-if="'canvas' | isState">
-            <div class="nav-item" ng-hide="editorEnabled">
-                <h4 ng-click="editorEnabled=! editorEnabled">{{projectName}}</h4>
-                <i class="material-icons icon-small font-white" ng-click="editorEnabled=! editorEnabled">mode_edit</i>
+        <div class="relative-container">
+            <div class="nav-item absolute-container" ng-if="'canvas' | isState">
+                <div class="nav-item" ng-hide="editorEnabled">
+                    <h4 ng-click="editorEnabled=! editorEnabled">{{projectName}}</h4>
+                    <i class="material-icons icon-small font-white" ng-click="editorEnabled=! editorEnabled">mode_edit</i>
+                </div>
+                <div class="nav-item" ng-show="editorEnabled">
+                    <input class="titleEdit" ng-model="projectName">
+                    <i class="material-icons icon-small font-white" ng-click="editorEnabled=! editorEnabled">check</i>
+                </div>
             </div>
-            <div class="nav-item" ng-show="editorEnabled">
-                <input class="titleEdit" ng-model="projectName">
-                <i class="material-icons icon-small font-white" ng-click="editorEnabled=! editorEnabled">check</i>
-            </div>
-
         </div>
-
         <div class="nav-item">
-            <h3 class="nav-item" ng-if="'projects | isState'">Welcome {{currentUser.username}}.</h3>
+            <h3 class="nav-item" ng-if="'projects' | isState">Welcome {{currentUser.username}}.</h3>
         </div>
 
 

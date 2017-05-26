@@ -15,6 +15,14 @@
             @include vert-align-center;
             margin: 25px;
 
+        
+
+            .titleEdit:focus {
+                margin-bottom: 5px !important;
+                font-size: 20px !important;
+                color: #FFF !important;
+            }
+
             .titleEdit{
                 background: transparent;
                 border-radius: 0;
@@ -55,6 +63,10 @@
                 margin-left: 10px;
                 cursor: pointer;
                 user-select: none;
+            }
+
+            img{
+                cursor: pointer;
             }
         }
 
