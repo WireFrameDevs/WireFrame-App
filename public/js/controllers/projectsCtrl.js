@@ -27,6 +27,22 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                         });
 
                         (recentArr.length <= 3) ? ($scope.recent = recentArr) : ($scope.recent = recentArr.slice(0, 3));
+
+                        $scope.cardFilter = (filter) => {
+                            switch(filter){
+                                case 'Allprojects':
+                                $scope.projects
+                                break;
+                                case 'Recent':
+                                $scope.projects = $scope.recent;
+                                break;
+                                case 'Starred':
+                                $scope.projects = $scope.favProjects;
+                                break;
+                                default:
+                                $scope.projects
+                            }
+                        }
                         
                     });
                 }
