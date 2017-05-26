@@ -11,7 +11,7 @@ module.exports = {
   },
 
   createProject: (req, res) => {
-  	let newPro = [req.body.wf_name, req.body.wf_text, req.body.fav_wf, req.body.user_id];
+  	let newPro = [req.body.wf_name, req.body.wf_text, req.body.fav_wf, req.body.wf_date, req.body.user_id];
 
   	db.create_project(newPro, (err, newProject) => {
   		(!err) ? res.send(newProject) : res.send(err);
@@ -19,7 +19,7 @@ module.exports = {
   },
 
   updateProject: (req, res) => {
-  	let newInfo = [req.body.wf_name, req.body.wf_text, req.body.fav_wf, req.body.wf_id];
+  	let newInfo = [req.body.wf_name, req.body.wf_text, req.body.fav_wf, req.body.wf_date, req.body.wf_id];
 
   	db.update_project(newInfo, (err, updated) => {
   		(!err) ? res.send(updated) : res.send(err);
