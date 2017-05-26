@@ -293,6 +293,15 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
     $scope.shapeToolbarShow = true;
   }
 
+  $scope.changeShapeColor = function(color) {
+    $scope.shapeClass.attr("fill", color);
+  }
+
+  $scope.deleteShape = function() {
+    $scope.shapeClass.remove();
+    $scope.shapeToolbarShow = false;
+  }
+
 
 
 
