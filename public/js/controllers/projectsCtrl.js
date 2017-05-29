@@ -1,4 +1,4 @@
-angular.module('app').controller('projectsCtrl', function($scope, mainService, $rootScope, $location){
+angular.module('app').controller('projectsCtrl', function($scope, mainService, $rootScope){
 
     function getUser() {
         // console.log('getUser function ran!');
@@ -12,38 +12,34 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                     mainService.getAllProjects(userId).then((response) => {
                         // All Projects
                         $scope.projects = response;
+                        console.log($scope.projects);
 
-                        // Favorite Projects
+                        $scope.current = $scope.projects;                    
                         $scope.favProjects = [];
                         for(let i = 0; i < response.length; i++){
                             if(response[i].fav_wf === true){
                                 $scope.favProjects.push(response[i]);
                             }
                         }
+                        console.log('fav', $scope.favProjects);
 
-                        // Recent Projects
                         let recentArr = response.sort(function(a,b){
                             return new Date(a.wf_date).getTime() - new Date(b.wf_date).getTime();
                         });
 
                         (recentArr.length <= 3) ? ($scope.recent = recentArr) : ($scope.recent = recentArr.slice(0, 3));
 
-                        $scope.cardFilter = (filter) => {
-                            switch(filter){
-                                case 'Allprojects':
-                                $scope.projects
-                                break;
-                                case 'Recent':
-                                $scope.projects = $scope.recent;
-                                break;
-                                case 'Starred':
-                                $scope.projects = $scope.favProjects;
-                                break;
-                                default:
-                                $scope.projects
+                        console.log('recent', $scope.recent);
+
+                        $scope.currentProjects = (current) => {
+                            if(current === 'projects'){
+                                return $scope.current = $scope.projects
+                            } else if( current === 'favProjects'){
+                                return $scope.current = $scope.favProjects
+                            } else if(current === 'recent'){
+                                return $scope.current = $scope.recent
                             }
-                        }
-                        
+                        }   
                     });
                 }
                 
@@ -80,8 +76,6 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
             }
         });
     }
-    $scope.callUser = getUser();    
-
-
+    $scope.callUser = getUser();
     
-})
+});
