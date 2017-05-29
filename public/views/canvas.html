@@ -42,3 +42,54 @@
 
 
 </div>
+
+
+
+<!--NEW TOOLBARS-->
+<!--Shape Toolbar-->
+            <div class="toolbar bottom tool-width">
+                <span class="tooltip__tip"></span>
+                <div class="tooltip__content">
+                    <div class="button-square">
+                        <div class="shine-square"></div>
+                        <div class="circle"></div>
+                    </div>
+                    <div class="button-square">
+                        <div class="shine-square"></div>
+                        <div class="oval"></div>
+                    </div>
+                    <div class="button-square">
+                        <div class="shine-square"></div>
+                        <div class="square"></div>
+                    </div>
+                    <div class="button-square">
+                        <div class="shine-square"></div>
+                        <div class="rounded-square"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!--DELETE and Color-->
+            <div class="toolbar bottom tool-width">
+                <span class="tooltip__tip"></span>
+                <div class="tooltip__content">
+                    <div class="button-square ">
+                        <div class="shine-square"></div>
+                        <input type="color" value="#777777" list="colors" ng-change="changeShapeColor(elementColor)" ng-model="elementColor" id="pickAColor">
+                            <datalist id=colors>
+                            <option>#ffffff</option>
+                            <option>#000000</option> 
+                            <option>#ff0000</option> 
+                            <option>#00ff00</option> 
+                            <option>#0000ff</option> 
+                            <option>#ffa500</option> 
+                            <option>#800080</option>
+                            <option>#008080</option> 
+                            </datalist>
+                    </div>
+                    <div class="button-square">
+                        <div class="shine-square"></div>
+                        <i class="material-icons trash">delete</i>
+                    </div>
+                </div>
+            </div>
