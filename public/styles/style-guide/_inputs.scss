@@ -5,3 +5,20 @@ input{
     padding: 15px 12px;
     outline: none;
 }
+
+
+input[type="color"] {
+	-webkit-appearance: none;
+    border-radius: 0%;
+    background: blue;
+	border: none;
+    margin: 0;
+	width: 25px;
+	height: 10px;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+}

@@ -3,7 +3,7 @@
     height: 100vh;
     background: url('../../images/large.png') no-repeat center center fixed;
     background-size: cover;
-    box-shadow: 5px 0px 7px 0px #000;
+    box-shadow: 2px 0px 36px 0px #000;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,7 +33,7 @@
 }
 
 .sidebar-item:hover{
-    background: $gray-dark;
+    background: rgba(51,51,51,0.7);
     border-top-left-radius: $border-radius-extreme;
     border-bottom-left-radius: $border-radius-extreme;
 }

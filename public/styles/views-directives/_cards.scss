@@ -46,12 +46,22 @@
 }
 
 .card-add:hover{
-    background-color: $grey-300;
+    cursor: pointer;
+    background-color: $grey-100;
     position: relative;
     width: 300px;
     height: 200px;
     overflow: hidden;
     box-shadow: none;
-    margin: 40px 40px;
+    // margin: 40px 40px;
     border-radius: $border-radius-huge;
+}
+
+.card:hover{
+    @include use-linear-gradients(value);
+    cursor: pointer;
+    opacity: 0.5;
+    box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+    transition: all 0.1s linear;
+
 }

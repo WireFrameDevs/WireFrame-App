@@ -56,6 +56,49 @@
     box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0) 0px 1px 0px, inset rgba(0,0,0,0.5) 0px 0px 5px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
 }
 
+.button-square {
+    height: 2em;
+    width: 2em;
+    display: inline-block;
+    padding: 0px 0px;
+    margin: 2px 3px 2px 3px;
+    cursor: pointer;
+    opacity: 0.9;
+    color: #FFF;
+    font-size: 1em;
+    letter-spacing: 1px;
+    text-shadow: rgba(0,0,0,0.9) 0px 1px 2px;
+    
+    background: #242424;
+    border: 1px solid #242424;
+    border-radius: 4px;
+    box-shadow: rgba(255,255,255,0.06) 0px 1px 0px, inset rgba(255,255,255,0.06) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+    transition: all 0.1s linear;
+}
+
+.button-square:hover {
+    box-shadow: rgba(0,0,0,0.5) 0px 2px 5px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+}
+
+.button-square:active {
+    box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0) 0px 1px 0px, inset rgba(0,0,0,0.5) 0px 0px 5px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+}
+
+
+.shine-square {
+    display: block;
+    position: relative;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=1 );
+    background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.1) 50%,rgba(255,255,255,0) 100%);
+    background: linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.1) 50%,rgba(255,255,255,0) 100%);
+    padding: 0px 5px;
+    top: 0px;
+    left: -4px;
+    height: 1px;
+    box-shadow: rgba(255,255,255,0.2) 0px 1px 5px;
+    transition: all 0.3s ease-in-out;
+}
+
 .shine {
     display: block;
     position: relative;
@@ -72,6 +115,10 @@
 
 .button:hover .shine {left: 24px;}
 .button:active .shine {opacity: 0;}
+
+.button-square:hover .shine-square {left: 4px; background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.5) 50%,rgba(255,255,255,0) 100%);
+    background: linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.5) 50%,rgba(255,255,255,0) 100%);}
+.button-square:active .shine-square {opacity: 0;}
 
 .button.gray {background: $brand-gray}
 .button.blue {background: $brand-blue}
