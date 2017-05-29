@@ -117,3 +117,25 @@ canvas {
 
 
 
+
+
+/*ANGULAR ANIMATIONS*/
+
+/*starting styles*/
+.card.ng-enter{
+    transition: 0.50s ease-out all;
+    opacity: 0;
+    transform: translateX(50px);
+    
+}
+
+/*finishing styles*/
+.card.ng-enter.ng-enter-active{
+    opacity: 1;
+    transform: translateX(0px);
+}
+
+.card.ng-enter-stagger{
+    transition-delay: 0.05s;
+    transition-duration: 0;
+}
