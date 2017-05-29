@@ -6,7 +6,7 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
             if (user) {
                 $rootScope.currentUser = user;
                 $rootScope.isLoggedIn = true;
-                // $rootScope.userId = user.id;
+                $rootScope.userId = user.id;
                 let userId = user.id;
                 $scope.getProjects = () => {
                     mainService.getAllProjects(userId).then((response) => {
@@ -54,15 +54,6 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                     });
                 }
 
-
-                //Goes in Canvas Ctrl
-                $scope.newProject = (projectData) => {
-                    projectData.user_id = userId;
-                    projectDate.wf_date = new Date();
-                    mainService.createProject(projectData).then((response) => {
-                        $scope.newPro = response;
-                    });
-                }
 
                 //Favoriting, deleting shapes, creating shapes, sync project, save existing project.
                 $scope.updateProject = () => {
