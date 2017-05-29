@@ -16,13 +16,13 @@
         <div class="relative-container">
             <div class="nav-item absolute-container" ng-if="'canvas' | isState">
                 <div class="nav-item" ng-hide="editorEnabled">
-                    <h4 ng-click="editorEnabled=! editorEnabled">{{projectName}}</h4>
+                    <h4 ng-click="editorEnabled=!editorEnabled">{{projectName}}</h4>
                     <i class="material-icons icon-small font-white" ng-click="editorEnabled=! editorEnabled">mode_edit</i>
                 </div>
                 <div class="nav-item" ng-show="editorEnabled">
                     <form ng-submit="editorEnabled=!editorEnabled">
-                        <input class="titleEdit" ng-model="projectName" >
-
+                        <input class="titleEdit" ng-model="projectName" ng-change="logProjectName(projectName)" >
+                        <h1>{{projectName}}</h1>
                     </form>
                     <i class="material-icons icon-small font-white" ng-click="editorEnabled=! editorEnabled">check</i>
                 </div>
@@ -35,7 +35,8 @@
 
         <div class="nav-item">
             <!--SAVE PROJECT-->
-            <div class="button orange" id="save" text="Save Project" ng-if="'canvas' | isState" style="padding: 5px 11px"><i class="material-icons" style="margin: 0">save</i></div>
+            <div class="button orange" ng-click="saveProject(projectName)" id="save" text="Save Project" ng-if="'canvas' | isState" style="padding: 5px 11px"><i class="material-icons" style="margin: 0">save</i></div>
+            
 
 
             <!--TOOLTIP-->

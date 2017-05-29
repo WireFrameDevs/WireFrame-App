@@ -12,6 +12,7 @@ angular.module('app').service('mainService', function($http){
   }
 
   this.createProject = (projectData) => {
+    // console.log(projectData.wf_name);
   	return $http({
   		method: 'POST',
   		url: baseurl + 'api/projects',
@@ -71,5 +72,4 @@ angular.module('app').service('mainService', function($http){
       console.log(err);
     });
   }
-
 });
