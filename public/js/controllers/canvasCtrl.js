@@ -1,8 +1,42 @@
-angular.module('app').controller('canvasCtrl', function ($scope, mainService, $document, $compile, $rootScope) {
+angular.module('app').controller('canvasCtrl', function ($scope, mainService, $document, $compile, $rootScope, $stateParams) {
 
   $rootScope.canvas = angular.element(document.querySelector('#canvas'));
   let toolbar = angular.element(document.querySelector('#toolbar'));
   let shapeToolbar = angular.element(document.querySelector('#shapeToolbar'));
+
+
+  $scope.getUserProjects = function () {
+    mainService.getUser().then((user) => {
+      if (user) {
+        $rootScope.currentUser = user;
+        $rootScope.isLoggedIn = true;
+        $rootScope.userId = user.id;
+        let userId = user.id;
+        $scope.getProject();
+        console.log('====================================');
+        console.log($scope.projectHTML);
+        console.log('====================================');
+      }
+    })
+  }
+
+  $scope.getProject = function () {
+    mainService.getAllProjects(userId).then((response) => {
+      // All Projects
+      $scope.projects = response;
+      for (let i = 0; i < $scope.projects.length; i++) {
+        if ($scope.projects[i].wf_id == $stateParams.id) {
+          $scope.projectHTML = $scope.projects[i].wf_text
+        }
+      }
+    })
+  }
+
+  $scope.getUserProjects();
+
+
+
+
 
   $scope.elementColor = "white";
 
@@ -113,7 +147,7 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
       if ($scope.shadowX > 5 || $scope.shadowY > 5) {
         $scope.toolbarShow = true;
       }
-      if($scope.shapeClass) {
+      if ($scope.shapeClass) {
         $scope.shapeClass.attr('stroke', 'black');
       }
     }
@@ -169,11 +203,11 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
   }
 
 
-  $scope.allowDrawFunc = function() {
+  $scope.allowDrawFunc = function () {
     $scope.allowDraw = true;
   }
 
-  $scope.disableDrawFunc = function(event) {
+  $scope.disableDrawFunc = function (event) {
     $scope.shapeClass.attr('stroke', 'black')
     $scope.shapeID = event.target.attributes.id.nodeValue;
     $scope.allowDrag = true;
@@ -186,30 +220,30 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
     $scope.shapeClass.attr("stroke", "red")
   }
 
-  $scope.dragRect = function(event) {
+  $scope.dragRect = function (event) {
     let moveRect = angular.element(document.querySelector('#' + $scope.shapeID));
     if ($scope.allowDrag) {
       $scope.shapeToolbarShow = false;
       moveRect.attr("x", event.clientX - (event.target.attributes.width.nodeValue / 2))
       moveRect.attr('y', event.clientY - 60 - (event.target.attributes.height.nodeValue / 2))
-     }
+    }
   }
 
-  $scope.dragEllipse = function(event) {
+  $scope.dragEllipse = function (event) {
     let moveEllipse = angular.element(document.querySelector('#' + $scope.shapeID));
     if ($scope.allowDrag) {
       $scope.shapeToolbarShow = false;
       moveEllipse.attr("cx", event.clientX)
       moveEllipse.attr('cy', event.clientY - 60)
-     }
+    }
   }
-  $scope.dragCircle = function(event) {
+  $scope.dragCircle = function (event) {
     let moveCircle = angular.element(document.querySelector('#' + $scope.shapeID));
     if ($scope.allowDrag) {
       $scope.shapeToolbarShow = false;
       moveCircle.attr("cx", event.clientX)
       moveCircle.attr('cy', event.clientY - 60)
-     }
+    }
   }
 
   function dropShape(event) {
@@ -219,7 +253,7 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
     $scope.showRectToolbar(event);
   }
 
-  $scope.showRectToolbar = function(event, creationX, creationY) {
+  $scope.showRectToolbar = function (event, creationX, creationY) {
     if (!creationX) {
       let shapeToolbarY = event.target.attributes.y.nodeValue.toString() + "px";
       let shapeToolbarX = event.target.attributes.x.nodeValue.toString() + "px";
@@ -242,7 +276,7 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
     $scope.shapeToolbarShow = true;
   }
 
-  $scope.showCircleToolbar = function(event) {
+  $scope.showCircleToolbar = function (event) {
     let shapeToolbarY = (event.target.attributes.cy.nodeValue - event.target.attributes.r.nodeValue) + "px";
     let shapeToolbarX = (event.target.attributes.cx.nodeValue - event.target.attributes.r.nodeValue) + "px";
     $scope.shapeToolbarStyle = {
@@ -262,7 +296,7 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
     $scope.shapeToolbarShow = true;
   }
 
-  $scope.showEllipseToolbar = function(event) {
+  $scope.showEllipseToolbar = function (event) {
     let shapeToolbarY = (event.target.attributes.cy.nodeValue - event.target.attributes.ry.nodeValue) + "px";
     let shapeToolbarX = (event.target.attributes.cx.nodeValue - event.target.attributes.rx.nodeValue) + "px";
     $scope.shapeToolbarStyle = {
@@ -282,11 +316,11 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
     $scope.shapeToolbarShow = true;
   }
 
-  $scope.changeShapeColor = function(color) {
+  $scope.changeShapeColor = function (color) {
     $scope.shapeClass.attr("fill", color);
   }
 
-  $scope.deleteShape = function() {
+  $scope.deleteShape = function () {
     $scope.shapeClass.remove();
     $scope.shapeToolbarShow = false;
   }

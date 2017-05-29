@@ -11,13 +11,13 @@ angular.module('app').directive('navBar', function () {
         },
         controller: function ($scope, $rootScope, mainService) {
             $scope.logout = mainService.logout;
-            // if (!$scope.projectName) {
-            //     $scope.projectName = 'Untitled';
-            // }
+            if (!$scope.projectName) {
+                $scope.projectName = 'Untitled';
+            }
             $scope.logProjectName = function(projectName) {
                 $scope.projectNameForReal = projectName;
             }
-            $scope.saveProject = function(projectName) {
+            $scope.saveProject = function() {
                 let projectData = {
                     user_id: $rootScope.userId,
                     wf_date: new Date(),
