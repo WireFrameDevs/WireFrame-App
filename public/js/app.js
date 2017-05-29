@@ -1,5 +1,5 @@
 angular.module('app', ['ui.router', 'ngAnimate'])
-.config(function($stateProvider, $urlRouterProvider){
+.config(function($stateProvider, $urlRouterProvider, $logProvider){
         $stateProvider
             .state('home', {
                 url: '/',
