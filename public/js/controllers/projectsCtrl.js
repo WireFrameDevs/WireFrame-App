@@ -12,6 +12,8 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                     mainService.getAllProjects(userId).then((response) => {
                         // All Projects
                         $scope.projects = response;
+                        console.log($scope.projects)
+                        // Favorite Projects
                         console.log($scope.projects);
 
                         $scope.current = $scope.projects;                    
@@ -39,7 +41,14 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                             } else if(current === 'recent'){
                                 return $scope.current = $scope.recent
                             }
+<<<<<<< HEAD
+                        }
+                
+
+
+=======
                         }   
+>>>>>>> master
                     });
                 }
                 
