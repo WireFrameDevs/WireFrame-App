@@ -1,44 +1,52 @@
-angular.module('app').controller('canvasCtrl', function ($scope, mainService, $document, $compile, $rootScope, $stateParams) {
+angular.module('app').controller('canvasCtrl', function ($scope, mainService, $document, $compile, $rootScope, $stateParams, $log) {
 
   $rootScope.canvas = angular.element(document.querySelector('#canvas'));
   let toolbar = angular.element(document.querySelector('#toolbar'));
   let shapeToolbar = angular.element(document.querySelector('#shapeToolbar'));
+  $scope.shapeToolbarShow = false;
+  $scope.toolbarShow = false;
+  $scope.x1 = 0;
+  $scope.x2 = 0;
+  $scope.y1 = 0;
+  $scope.y2 = 0;
+  $scope.tempXLocation = 0;
+  $scope.tempYLocation = 0;
+  $scope.shadowX = 0;
+  $scope.shadowY = 0;
+  $scope.shapeHeight = 0;
+  $scope.shapeWidth = 0;
 
 
-  $scope.getUserProjects = function () {
-    mainService.getUser().then((user) => {
-      if (user) {
-        $rootScope.currentUser = user;
-        $rootScope.isLoggedIn = true;
-        $rootScope.userId = user.id;
-        let userId = user.id;
-        $scope.getProject();
-        console.log('====================================');
-        console.log($scope.projectHTML);
-        console.log('====================================');
-      }
-    })
-  }
+  // $scope.getUserProjects = function () {
+  //   mainService.getUser().then((user) => {
+  //     if (user) {
+  //       $rootScope.currentUser = user;
+  //       $rootScope.isLoggedIn = true;
+  //       $rootScope.userId = user.id;
+  //       let userId = user.id;
+  //       $scope.getProject();
+  //       console.log('====================================');
+  //       console.log($scope.projectHTML);
+  //       console.log('====================================');
+  //     }
+  //   })
+  // }
 
-  $scope.getProject = function () {
-    mainService.getAllProjects(userId).then((response) => {
-      // All Projects
-      $scope.projects = response;
-      for (let i = 0; i < $scope.projects.length; i++) {
-        if ($scope.projects[i].wf_id == $stateParams.id) {
-          $scope.projectHTML = $scope.projects[i].wf_text
-        }
-      }
-    })
-  }
+  // $scope.getProject = function () {
+  //   mainService.getAllProjects(userId).then((response) => {
+  //     // All Projects
+  //     $scope.projects = response;
+  //     for (let i = 0; i < $scope.projects.length; i++) {
+  //       if ($scope.projects[i].wf_id == $stateParams.id) {
+  //         $scope.projectHTML = $scope.projects[i].wf_text
+  //       }
+  //     }
+  //   })
+  // }
 
-  $scope.getUserProjects();
+  // $scope.getUserProjects();
 
-
-
-
-
-  $scope.elementColor = "white";
+  // $scope.elementColor = $scope.shapeClass;
 
   $scope.myFunc = function (myE) {
     $scope.x = myE.clientX;
@@ -104,6 +112,7 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
     } else {
       $scope.shapeHeight = $scope.y1 - $scope.y2;
     }
+
   }
 
   $scope.endDraw = function (event) {
@@ -150,15 +159,14 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
       if ($scope.shapeClass) {
         $scope.shapeClass.attr('stroke', 'black');
       }
+      $scope.elementColor = "white";
     }
 
     $scope.allowDrawFunc();
-
-
   }
 
   $scope.createBox = function () {
-    let template = ("<svg class='draggable' width='100%' height='100%'><rect ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' />  </svg>")
+    let template = ("<svg class='draggable' ><rect ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' />  </svg>")
     let linkFn = $compile(template);
     let content = linkFn($scope);
     $rootScope.canvas.append(content);
@@ -215,6 +223,13 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
     $scope.shapeToolbarShow = false;
     $document.on('mouseup', dropShape)
     $scope.shapeClass = angular.element(document.querySelector('#' + $scope.shapeID))
+    $scope.elementColor = $scope.shapeClass[0].attributes.fill.nodeValue;
+    // console.log('====================================');
+    // console.log($scope.shapeClass);
+    // console.log('====================================');
+    // console.log('====================================');
+    // console.log($scope.shapeClass[0].attributes.fill.nodeValue);
+    // console.log('====================================');
 
 
     $scope.shapeClass.attr("stroke", "red")
@@ -250,7 +265,6 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
     $scope.allowDrag = false;
     let moveShape = angular.element(document.querySelector('#' + $scope.shapeID));
     moveShape.attr("id", ("dynamicId" + event.clientX + event.clientY));
-    $scope.showRectToolbar(event);
   }
 
   $scope.showRectToolbar = function (event, creationX, creationY) {
@@ -318,6 +332,9 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
 
   $scope.changeShapeColor = function (color) {
     $scope.shapeClass.attr("fill", color);
+    console.log('====================================');
+    console.log($scope.shapeClass);
+    console.log('====================================');
   }
 
   $scope.deleteShape = function () {
