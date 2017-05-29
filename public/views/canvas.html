@@ -1,8 +1,8 @@
 <div id="toolbar">
 
-  <div style="width:100%;height:93.8vh;z-index:-1;background:white;" ng-mousemove="myFunc($event)" ng-mousedown="startDraw($event)"
+  <div style="width:100%;height:93.8vh;z-index:-1;background:white;" ng-mousedown="startDraw($event)"
     ng-mouseup="endDraw($event)">
-    <svg id="canvas" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="cursor:crosshair;z-index:-1;">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="cursor:crosshair;z-index:-1;">
       <defs>
         <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
           <path d="M 8 0 L 0 0 0 8" fill="none" stroke="grey" stroke-width="0.5" />
@@ -12,103 +12,70 @@
           <path d="M 80 0 L 0 0 0 80" fill="none" stroke="grey" stroke-width="1" />
         </pattern>
       </defs>
-
-      <rect ng-show="showShadow" x="{{xLocation}}" y="{{yLocation}}" width="{{ shapeWidth }}" height="{{ shapeHeight }}" style="fill:rgba(78,139,168,0.3);stroke-width:1;stroke:rgb(0,0,0)"
+      <rect ng-show="showShadow" ng-attr-x="{{ xLocation }}" ng-attr-y="{{ yLocation }}" ng-attr-width="{{ shapeWidth }}" ng-attr-height="{{ shapeHeight }}" style="fill:rgba(78,139,168,0.3);stroke-width:1;stroke:rgb(0,0,0)"
       />
-      <rect ng-show="showShadow2" x="{{shadowXLocation}}" y="{{shadowYLocation}}" width="{{ shadowX }}" height="{{ shadowY }}"
+      <rect ng-show="showShadow2" ng-attr-x="{{ shadowXLocation }}" ng-attr-y="{{ shadowYLocation }}" ng-attr-width="{{ shadowX }}" ng-attr-height="{{ shadowY }}"
         style="fill:rgba(0,0,168,0.3);stroke-width:1;stroke:rgb(0,0,0)" />
 
-
       <rect width="100%" height="100%" fill="url(#grid)" />
+      <svg id="canvas"></svg>
     </svg>
   </div>
 
   <div id="toolbar">
-    <div ng-if="toolbarShow" ng-style="{{toolbarStyle}}">
-      <ul>
-        <li class="button" ng-click="createBox()">Box</li>
-        <li class="button" ng-click="createCircle()">Circle</li>
-        <li class="button" ng-click="createEllipse()">Ellipse</li>
-        <li class="button" ng-click="createRoundedBox()">Rounded Box</li>
-      </ul>
+    <div ng-if="toolbarShow" ng-style="{{toolbarStyle}}" class="toolbar bottom tool-width-shapes">
+      <span class="tooltip__tip"></span>
+      <div class="tooltip__content">
+        <div ng-click="createBox()" class="button-square">
+          <div class="shine-square"></div>
+          <div class="square"></div>
+        </div>
+        <div ng-click="createRoundedBox()" class="button-square">
+          <div class="shine-square"></div>
+          <div class="rounded-square"></div>
+        </div>
+        <div ng-click="createCircle()" class="button-square">
+          <div class="shine-square"></div>
+          <div class="circle"></div>
+        </div>
+        <div ng-click="createEllipse()" class="button-square">
+          <div class="shine-square"></div>
+          <div class="oval"></div>
+        </div>
+      </div>
     </div>
   </div>
-  <div id="ShapeToolbar">
-    <div ng-if="shapeToolbarShow" ng-style="{{ shapeToolbarStyle }}">
-      <ul>
-        <input type="color" value="#777777" list="colors" ng-change="changeShapeColor(elementColor)" ng-model="elementColor" id="pickAColor">
-        <datalist id=colors>
-          <option>#ffffff</option> <!-- white -->
-          <option>#000000</option> <!-- black -->
-          <option>#ff0000</option> <!-- red -->
-          <option>#00ff00</option> <!-- green -->
-          <option>#0000ff</option> <!-- blue -->
-          <option>#ffa500</option> <!-- orange -->
-          <option>#800080</option> <!-- purple -->
-          <option>#008080</option> <!-- teal -->
-
-
-          <option>#0000ff</option>
-          <option>#0000ff</option>
-          <option>#0000ff</option>
-        </datalist>
-        <li class="button" ng-click="deleteShape()">delete</li>
-      </ul>
-    </div>
-  </div>
-
-
-
 </div>
-
-
-
-<!--NEW TOOLBARS-->
-<!--Shape Toolbar-->
-            <div class="toolbar bottom tool-width">
-                <span class="tooltip__tip"></span>
-                <div class="tooltip__content">
-                    <div class="button-square">
-                        <div class="shine-square"></div>
-                        <div class="circle"></div>
-                    </div>
-                    <div class="button-square">
-                        <div class="shine-square"></div>
-                        <div class="oval"></div>
-                    </div>
-                    <div class="button-square">
-                        <div class="shine-square"></div>
-                        <div class="square"></div>
-                    </div>
-                    <div class="button-square">
-                        <div class="shine-square"></div>
-                        <div class="rounded-square"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!--DELETE and Color-->
-            <div class="toolbar bottom tool-width">
-                <span class="tooltip__tip"></span>
-                <div class="tooltip__content">
-                    <div class="button-square ">
-                        <div class="shine-square"></div>
-                        <input type="color" value="#777777" list="colors" ng-change="changeShapeColor(elementColor)" ng-model="elementColor" id="pickAColor">
-                            <datalist id=colors>
-                            <option>#ffffff</option>
-                            <option>#000000</option> 
-                            <option>#ff0000</option> 
-                            <option>#00ff00</option> 
-                            <option>#0000ff</option> 
-                            <option>#ffa500</option> 
-                            <option>#800080</option>
-                            <option>#008080</option> 
-                            </datalist>
-                    </div>
-                    <div class="button-square">
-                        <div class="shine-square"></div>
-                        <i class="material-icons trash">delete</i>
-                    </div>
-                </div>
-            </div>
+<div id="ShapeToolbar">
+  <div ng-if="shapeToolbarShow" ng-style="{{ shapeToolbarStyle }}" class="toolbar bottom tool-width-color">
+    <span class="tooltip__tip"></span>
+    <div class="tooltip__content">
+      <div class="button-square ">
+        <div class="shine-square"></div>
+        <input type="color" ng-style="{'background': elementColor}" list="colors" ng-change="changeShapeColor(elementColor)" ng-model="elementColor">
+        <datalist id=colors>
+          <option>#ffffff</option>
+          <!-- WHITE -->
+          <option>#ff0000</option>
+          <!-- RED -->
+          <option>#00ff00</option>
+          <!-- GREEN -->
+          <option>#0000ff</option>
+          <!-- BLUE -->
+          <option>#ffa500</option>
+          <!-- ORANGE -->
+          <option>#800080</option>
+          <!-- PURPLE -->
+          <option>#008080</option>
+          <!-- TEAL -->
+        </datalist>
+      </div>
+      <div ng-click="deleteShape()" class="button-square">
+        <div class="shine-square"></div>
+        <i class="material-icons trash">delete</i>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 </div>

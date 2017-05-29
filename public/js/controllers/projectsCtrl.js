@@ -1,4 +1,4 @@
-angular.module('app').controller('projectsCtrl', function($scope, mainService, $rootScope){
+angular.module('app').controller('projectsCtrl', function ($scope, mainService, $rootScope) {
 
     function getUser() {
         // console.log('getUser function ran!');
@@ -6,7 +6,7 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
             if (user) {
                 $rootScope.currentUser = user;
                 $rootScope.isLoggedIn = true;
-                // $rootScope.userId = user.id;
+                $rootScope.userId = user.id;
                 let userId = user.id;
                 $scope.getProjects = () => {
                     mainService.getAllProjects(userId).then((response) => {
@@ -16,17 +16,18 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                         // Favorite Projects
                         console.log($scope.projects);
 
+               
+                        $scope.current = $scope.projects;
 
-                        $scope.current = $scope.projects;                    
                         $scope.favProjects = [];
-                        for(let i = 0; i < response.length; i++){
-                            if(response[i].fav_wf === true){
+                        for (let i = 0; i < response.length; i++) {
+                            if (response[i].fav_wf === true) {
                                 $scope.favProjects.push(response[i]);
                             }
                         }
                         console.log('fav', $scope.favProjects);
 
-                        let recentArr = response.sort(function(a,b){
+                        let recentArr = response.sort(function (a, b) {
                             return new Date(a.wf_date).getTime() - new Date(b.wf_date).getTime();
                         });
 
@@ -35,17 +36,17 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                         console.log('recent', $scope.recent);
 
                         $scope.currentProjects = (current) => {
-                            if(current === 'projects'){
+                            if (current === 'projects') {
                                 return $scope.current = $scope.projects
-                            } else if( current === 'favProjects'){
+                            } else if (current === 'favProjects') {
                                 return $scope.current = $scope.favProjects
-                            } else if(current === 'recent'){
+                            } else if (current === 'recent') {
                                 return $scope.current = $scope.recent
                             }
                         }
                     });
                 }
-                
+
                 $scope.getProjects();
 
                 $scope.updateFav = (isFav, index) => {
@@ -57,15 +58,6 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                     });
                 }
 
-
-                //Goes in Canvas Ctrl
-                $scope.newProject = (projectData) => {
-                    projectData.user_id = userId;
-                    projectDate.wf_date = new Date();
-                    mainService.createProject(projectData).then((response) => {
-                        $scope.newPro = response;
-                    });
-                }
 
                 //Favoriting, deleting shapes, creating shapes, sync project, save existing project.
                 $scope.updateProject = () => {
@@ -89,5 +81,5 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
         });
     }
     $scope.callUser = getUser();
-    
+
 });
