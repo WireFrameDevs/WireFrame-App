@@ -20,13 +20,14 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
 
                         // Favorite Projects
                         $scope.favProjects = [];
-                        for(let i = 0; i < response.length; i++){
-                            if(response[i].fav_wf === true){
+                        for (let i = 0; i < response.length; i++) {
+                            if (response[i].fav_wf === true) {
                                 $scope.favProjects.push(response[i]);
                             }
                         }
                         // console.log('fav', $scope.favProjects);
 
+                        //Recent Projects
                         let recentArr = response.sort(function(a, b){
                             return new Date(b.wf_date).getTime() - new Date(a.wf_date).getTime();
                         });
@@ -36,22 +37,23 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                         // console.log('recent', $scope.recent);
 
                         $scope.currentProjects = (current) => {
-                            if(current === 'projects'){
+                            if (current === 'projects') {
                                 return $scope.current = $scope.projects
-                            } else if( current === 'favProjects'){
+                            } else if (current === 'favProjects') {
                                 return $scope.current = $scope.favProjects
-                            } else if(current === 'recent'){
+                            } else if (current === 'recent') {
                                 return $scope.current = $scope.recent
                             }
                         }
-                        // $rootScope.searchKey;
+
                         if($rootScope.searchKey){
                             $scope.currentProjects = $scope.projects;
                             $scope.key = $rootScope.search;
                         }
+
                     });
                 }
-                
+
                 $scope.getProjects();
 
                 $scope.updateFav = (isFav, index) => {
@@ -82,5 +84,11 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
         });
     }
     $scope.callUser = getUser();
-    
+
+
+
+    $scope.flipped = false;
+    function onChange(){
+        $scope.isFlipped = !scope.isFlipped;
+    }
 });
