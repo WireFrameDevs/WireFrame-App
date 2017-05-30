@@ -17,36 +17,24 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
   $scope.shapeWidth = 0;
 
 
-  // $scope.getUserProjects = function () {
-  //   mainService.getUser().then((user) => {
-  //     if (user) {
-  //       $rootScope.currentUser = user;
-  //       $rootScope.isLoggedIn = true;
-  //       $rootScope.userId = user.id;
-  //       let userId = user.id;
-  //       $scope.getProject();
-  //       console.log('====================================');
-  //       console.log($scope.projectHTML);
-  //       console.log('====================================');
-  //     }
-  //   })
-  // }
 
-  // $scope.getProject = function () {
-  //   mainService.getAllProjects(userId).then((response) => {
-  //     // All Projects
-  //     $scope.projects = response;
-  //     for (let i = 0; i < $scope.projects.length; i++) {
-  //       if ($scope.projects[i].wf_id == $stateParams.id) {
-  //         $scope.projectHTML = $scope.projects[i].wf_text
-  //       }
-  //     }
-  //   })
-  // }
 
-  // $scope.getUserProjects();
+  $scope.getProject = function () {
+    for (let i = 0; i < $rootScope.projectsForCanvas.length; i++) {
+      if ($rootScope.projectsForCanvas[i].wf_id === parseInt($stateParams.id)) {
+        $scope.projectHTML = $rootScope.projectsForCanvas[i].wf_text
+        let template = ($scope.projectHTML);
+        let linkFn = $compile(template);
+        let content = linkFn($scope);
+        $rootScope.canvas.append(content);
+        $rootScope.projectName = $rootScope.projectsForCanvas[i].wf_name;
+      }
+    }
+    
+  }
+  $scope.getProject();
 
-  // $scope.elementColor = $scope.shapeClass;
+
 
   $scope.myFunc = function (myE) {
     $scope.x = myE.clientX;
