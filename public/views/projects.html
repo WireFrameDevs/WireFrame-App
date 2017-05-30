@@ -20,7 +20,6 @@
 
     <div class="content">
             <h4>Projects</h4>
-        
 
 
             <!--USER PROJECT CARDS-->
@@ -32,7 +31,7 @@
                         <h4 class="font-charcoal">New Project</h4>
                     </div>
                 </div>
-                <div class="card-wrap" ng-repeat="project in current">
+                <div class="card-wrap" ng-repeat="project in current | filter: searchKey">
                     <project-card></project-card>
                 </div>
             </div>
