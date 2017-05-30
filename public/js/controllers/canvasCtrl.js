@@ -19,29 +19,23 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
 
 
 
-  $scope.getProject = function () {
-    for (let i = 0; i < $rootScope.projectsForCanvas.length; i++) {
-      if ($rootScope.projectsForCanvas[i].wf_id === parseInt($stateParams.id)) {
-        $scope.projectHTML = $rootScope.projectsForCanvas[i].wf_text
-        let template = ($scope.projectHTML);
-        let linkFn = $compile(template);
-        let content = linkFn($scope);
-        $rootScope.canvas.append(content);
-        $rootScope.projectName = $rootScope.projectsForCanvas[i].wf_name;
-      }
-    }
-    
-  }
-  $scope.getProject();
+  // $scope.getProject = function () {
+  //   for (let i = 0; i < $rootScope.projectsForCanvas.length; i++) {
+  //     if ($rootScope.projectsForCanvas[i].wf_id === parseInt($stateParams.id)) {
+  //       $scope.projectHTML = $rootScope.projectsForCanvas[i].wf_text
+  //       let template = ($scope.projectHTML);
+  //       let linkFn = $compile(template);
+  //       let content = linkFn($scope);
+  //       $rootScope.canvas.append(content);
+  //       $rootScope.projectName = $rootScope.projectsForCanvas[i].wf_name;
+  //       $scope.shapeClass = angular.element(document.querySelector('#canvas'));
+  //     }
+  //   }
+  //
+  // }
+  // $scope.getProject();
 
 
-
-  $scope.myFunc = function (myE) {
-    $scope.x = myE.clientX;
-    $scope.y = myE.clientY;
-  }
-
-  $scope.number = 1;
 
   $scope.allowDraw = true;
 
@@ -188,7 +182,29 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
   }
 
   $scope.createRoundedBox = function () {
-    let template = ("<svg width='100%' height='100%'><rect ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " rx='20' ry='20' width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' is-selected='false' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "'  />    </svg>");
+    let template = ("<svg width='100%' height='100%'><rect ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " rx='20' ry='20' width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' is-selected='false' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "'  />    </svg>");
+    let linkFn = $compile(template);
+    let content = linkFn($scope);
+    $rootScope.canvas.append(content);
+    $scope.showShadow2 = false;
+    $scope.toolbarShow = false;
+    $scope.shapeClass = angular.element(document.querySelector('#dynamicId' + $scope.tempXLocation + $scope.tempYLocation))
+    $scope.showRectToolbar("whatever", $scope.shadowXLocation, $scope.shadowYLocation);
+  }
+
+  $scope.createImageBox = function () {
+    let template = ("<svg width='100%' height='100%'><image preserveAspectRatio='none' xlink:href='./images/image-box.svg'  ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' is-selected='false' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "'  />   </svg>");
+    let linkFn = $compile(template);
+    let content = linkFn($scope);
+    $rootScope.canvas.append(content);
+    $scope.showShadow2 = false;
+    $scope.toolbarShow = false;
+    $scope.shapeClass = angular.element(document.querySelector('#dynamicId' + $scope.tempXLocation + $scope.tempYLocation))
+    $scope.showRectToolbar("whatever", $scope.shadowXLocation, $scope.shadowYLocation);
+  }
+
+  $scope.createVideoBox = function () {
+    let template = ("<svg width='100%' height='100%'><image preserveAspectRatio='none' xlink:href='./images/video-box.svg'  ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' is-selected='false' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "'  />   </svg>");
     let linkFn = $compile(template);
     let content = linkFn($scope);
     $rootScope.canvas.append(content);
