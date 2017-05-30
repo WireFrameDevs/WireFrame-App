@@ -42,6 +42,14 @@ angular.module('app').directive('navBar', function () {
                     });
 
                 }
+                swal({
+                    title: 'Save Successful!',
+                    text: 'Scribble on my scribble pal!',
+                    type: 'success',
+                    imageUrl: 'https://media.giphy.com/media/XreQmk7ETCak0/giphy.gif'
+
+                    }
+                )
             }
         }
     }

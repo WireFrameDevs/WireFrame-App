@@ -72,7 +72,13 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                         $scope.deleted = response;
                         $scope.getProjects();
                     });
-                    
+                    swal({
+                        title: 'Project Deleted!',
+                        text: 'FOR-EVER!',
+                        type: 'success',
+                        imageUrl: 'https://media.giphy.com/media/hEwkspP1OllJK/giphy.gif'
+
+                    });
                 }
 
             }
