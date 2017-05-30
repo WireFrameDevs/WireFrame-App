@@ -16,6 +16,8 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                     mainService.getAllProjects(userId).then((response) => {
                         // All Projects
                         $scope.projects = response;
+                        $rootScope.projectsForCanvas = response;
+                        
                         $scope.current = $scope.projects;
 
                         // Favorite Projects
@@ -65,19 +67,12 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                     });
                 }
 
-
-                //Favoriting, deleting shapes, creating shapes, sync project, save existing project.
-                $scope.updateProject = () => {
-                    projectDate.wf_date = new Date();
-                    mainService.updateProject(newData).then((response) => {
-                        $scope.updated = response;
-                    });
-                }
-
                 $scope.deleteProject = (projectId) => {
                     mainService.deleteProject(projectId).then((response) => {
                         $scope.deleted = response;
+                        $scope.getProjects();
                     });
+                    
                 }
 
             }

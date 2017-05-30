@@ -23,12 +23,15 @@ angular.module('app').service('mainService', function($http){
   }
 
   this.updateProject = (newData) => {
+    console.log(newData);
   	return $http({
   		method: 'PUT',
   		url: baseurl + 'api/project/',
   		data: newData
   	}).then((response) => {
-  		return response.data;
+  		console.log('updated project comes back from server')
+      return response.data;
+
   	});
   }
 

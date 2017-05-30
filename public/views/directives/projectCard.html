@@ -1,10 +1,10 @@
 
 
 <div class="card" ng-class="{'flipped':isFlipped}">
-    <div class="face front">
+    <div class="face front" >
         <div class="black-triangle"></div>
         <i class="material-icons gear" ng-click="isFlipped = !isFlipped">settings</i>
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <svg ui-sref="mycanvas({id: project.wf_id})" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
                     <path d="M 8 0 L 0 0 0 8" fill="none" stroke="black" stroke-width="0.2" />
@@ -16,7 +16,7 @@
             <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
         <div class="card-footer">
-            <p ng-model="isFav.wf_id" ng-init="isFav.wf_id=project.wf_id" ui-sref="mycanvas({id: project.wf_id})">{{project.wf_name}}</p>
+            <p ui-sref="mycanvas({id: project.wf_id})" ng-model="isFav.wf_id" ng-init="isFav.wf_id=project.wf_id">{{project.wf_name}}</p>
             <!--EMPTY STAR-->
             <div ng-model="isFav.fav_wf" ng-init="isFav.fav_wf=project.fav_wf" ng-click="updateFav(isFav, $index)" ng-hide="project.fav_wf">
                 <i class="material-icons star">star_border</i>
@@ -30,8 +30,8 @@
 
     <div class="face back">
         Back Cards
-        <div class="button red">
-            <div class="shine" ng-click="deleteProject()"></div>Delete
+        <div class="button red" ng-click="deleteProject(project.wf_id)">
+            <div class="shine" ></div>Delete
         </div>
         <i class="material-icons" ng-click="isFlipped = !isFlipped">reply</i>
     </div>

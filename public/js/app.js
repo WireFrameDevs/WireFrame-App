@@ -4,38 +4,28 @@ angular.module('app', ['ui.router', 'ngAnimate'])
             .state('home', {
                 url: '/',
                 templateUrl: './views/homeSplash.html',
-                controller: 'homeSplashCtrl',
-                authenticate: false
+                controller: 'homeSplashCtrl'
+                
             })
             .state('projects', {
                 url: '/projects',
                 templateUrl: './views/projects.html',
-                controller: 'projectsCtrl',
-                authenticate: true
+                controller: 'projectsCtrl'
+                
             })
             .state('canvas', {
                 url: '/canvas',
                 templateUrl: './views/canvas.html',
-                controller: 'canvasCtrl',
-                authenticate: true
+                controller: 'canvasCtrl'
+                
             })
             .state('mycanvas', {
                 url: '/canvas/:id',
                 templateUrl: './views/canvas.html',
-                controller: 'canvasCtrl',
-                authenticate: true
+                controller: 'canvasCtrl'
+                
             })
             // console.log($urlRouterProvider)
             $urlRouterProvider.otherwise('/');
 });
 
-
-angular.module("app").run(function ($rootScope, $state, mainService) {
-    $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState,fromParams) {
-        if (toState.authenticate && !mainService.getUser()) {
-            // User isn’t authenticated
-            $state.transitionTo("home");
-            event.preventDefault();
-        }
-    });
-});
