@@ -19,21 +19,21 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
 
 
 
-  // $scope.getProject = function () {
-  //   for (let i = 0; i < $rootScope.projectsForCanvas.length; i++) {
-  //     if ($rootScope.projectsForCanvas[i].wf_id === parseInt($stateParams.id)) {
-  //       $scope.projectHTML = $rootScope.projectsForCanvas[i].wf_text
-  //       let template = ($scope.projectHTML);
-  //       let linkFn = $compile(template);
-  //       let content = linkFn($scope);
-  //       $rootScope.canvas.append(content);
-  //       $rootScope.projectName = $rootScope.projectsForCanvas[i].wf_name;
-  //       $scope.shapeClass = angular.element(document.querySelector('#canvas'));
-  //     }
-  //   }
-  //
-  // }
-  // $scope.getProject();
+  $scope.getProject = function () {
+    for (let i = 0; i < $rootScope.projectsForCanvas.length; i++) {
+      if ($rootScope.projectsForCanvas[i].wf_id === parseInt($stateParams.id)) {
+        $scope.projectHTML = $rootScope.projectsForCanvas[i].wf_text
+        let template = ($scope.projectHTML);
+        let linkFn = $compile(template);
+        let content = linkFn($scope);
+        $rootScope.canvas.append(content);
+        $rootScope.projectName = $rootScope.projectsForCanvas[i].wf_name;
+        $scope.shapeClass = angular.element(document.querySelector('#canvas'));
+      }
+    }
+
+  }
+  $scope.getProject();
 
 
 
