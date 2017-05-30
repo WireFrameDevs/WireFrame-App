@@ -16,7 +16,9 @@ angular.module('app').controller('projectsCtrl', function ($scope, mainService, 
                         // Favorite Projects
                         console.log($scope.projects);
 
+               
                         $scope.current = $scope.projects;
+
                         $scope.favProjects = [];
                         for (let i = 0; i < response.length; i++) {
                             if (response[i].fav_wf === true) {
@@ -80,4 +82,10 @@ angular.module('app').controller('projectsCtrl', function ($scope, mainService, 
     }
     $scope.callUser = getUser();
 
+
+
+    $scope.flipped = false;
+    function onChange(){
+        $scope.isFlipped = !scope.isFlipped;
+    }
 });

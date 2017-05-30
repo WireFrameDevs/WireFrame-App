@@ -12,8 +12,7 @@ html{
     // z-index: -1;
 
     .main-content-wrap{
-        display: flex;
-        flex-wrap: wrap;
+      
     }
 }
 
@@ -117,3 +116,25 @@ canvas {
 
 
 
+
+
+/*ANGULAR ANIMATIONS*/
+
+/*starting styles*/
+.card-wrap.ng-enter{
+    transition: 0.50s ease-out all;
+    opacity: 0;
+    transform: translateX(50px);
+    
+}
+
+/*finishing styles*/
+.card-wrap.ng-enter.ng-enter-active{
+    opacity: 1;
+    transform: translateX(0px);
+}
+
+.card-wrap.ng-enter-stagger{
+    transition-delay: 0.05s;
+    transition-duration: 0;
+}

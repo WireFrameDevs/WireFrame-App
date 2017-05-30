@@ -6,11 +6,27 @@
     position: relative;
     width: 300px;
     height: 200px;
-    overflow: hidden;
-    box-shadow: $card-shadow;
     margin: 30px 20px;
     border-radius: $border-radius-huge;
-
+    .black-triangle{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        background: linear-gradient(225deg, rgba(0,0,0,0.65) 50%,rgba(0,0,0,0) 50%);
+        height: 50px;
+        width: 50px;
+        opacity: 0;
+        transition: all 0.2s linear;
+    }
+    .gear{
+        opacity: 0;
+        position: absolute;
+        top: 8px;
+        right: 9px;
+        color: #FFF;
+        font-size: 13px;
+        transition: all 0.2s linear;
+    }
     .card-footer{
         @include flex-between-vert-center;
         position: absolute;
@@ -51,17 +67,74 @@
     position: relative;
     width: 300px;
     height: 200px;
-    overflow: hidden;
-    box-shadow: none;
     // margin: 40px 40px;
     border-radius: $border-radius-huge;
 }
 
+    @keyframes AnimationName { 
+    0%{background-position:51% 0%}
+    50%{background-position:50% 100%}
+    100%{background-position:51% 0%}
+}
 .card:hover{
     @include use-linear-gradients(value);
+    background-size: 200% 200%;
     cursor: pointer;
-    opacity: 0.5;
-    box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-    transition: all 0.1s linear;
+    transition: all 0.5s linear;
+    animation: AnimationName 1.5s ease infinite;
+    
+    .black-triangle{
+        opacity: 0.5;
+        transition: all 0.2s linear;
+    }
+    .gear{
+        opacity: 1;
+        transition: all 0.2s linear;
+    }
+}
 
+
+
+
+
+
+
+.flip-container {
+    perspective: 1000;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+  
+}
+.flip-container .card.flipped{
+    transform: rotateX(180deg);
+}
+
+.flip-container .card {
+    transform-style: preserve-3d;
+	transition: 0.3s;
+}
+
+.flip-container .face {
+    backface-visibility: hidden;
+    position: absolute;
+    z-index: 2;
+    box-shadow: $card-shadow;
+}
+ 
+.flip-container .front {  
+    z-index: 1;    
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    border-radius: $border-radius-huge;
+}
+
+.flip-container .card .back {
+    transform: rotateX(-180deg); 
+    background: rgba(255,255,255,1);
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    border-radius: $border-radius-huge;
 }
