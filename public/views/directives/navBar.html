@@ -10,7 +10,7 @@
         <div class="nav-item">
             <img ui-sref="projects" src="./images/WireframeLogo-02.svg" style="height: 38px; margin-left: 20px">
             <!--<img src="./images/WireframeLogo-03.svg" style="height: 30px; margin-left: 30px">-->
-            <input type="text" placeholder="Search projects" style="margin-left: 80px" ng-if="'projects' | isState">
+            <input type="text" placeholder="Search projects" style="margin-left: 80px" ng-model="search" ng-change="searchBar(search)" ng-if="'projects' | isState">
         </div>
 
         <div class="relative-container">

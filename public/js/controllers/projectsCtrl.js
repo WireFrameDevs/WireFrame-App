@@ -1,8 +1,12 @@
-angular.module('app').controller('projectsCtrl', function($scope, mainService, $rootScope){
+angular.module('app').controller('projectsCtrl', function($scope, mainService, $rootScope, $window){
 
     function getUser() {
         // console.log('getUser function ran!');
         mainService.getUser().then((user) => {
+            if(user.status === 404){
+                $rootScope.isLoggedIn = false;
+                $window.location.href = '/auth';
+            }
             if (user) {
                 $rootScope.currentUser = user;
                 $rootScope.isLoggedIn = true;
@@ -12,26 +16,24 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                     mainService.getAllProjects(userId).then((response) => {
                         // All Projects
                         $scope.projects = response;
-                        console.log($scope.projects)
-                        // Favorite Projects
-                        console.log($scope.projects);
+                        $scope.current = $scope.projects;
 
-                        $scope.current = $scope.projects;                    
+                        // Favorite Projects
                         $scope.favProjects = [];
                         for(let i = 0; i < response.length; i++){
                             if(response[i].fav_wf === true){
                                 $scope.favProjects.push(response[i]);
                             }
                         }
-                        console.log('fav', $scope.favProjects);
+                        // console.log('fav', $scope.favProjects);
 
-                        let recentArr = response.sort(function(a,b){
-                            return new Date(a.wf_date).getTime() - new Date(b.wf_date).getTime();
+                        let recentArr = response.sort(function(a, b){
+                            return new Date(b.wf_date).getTime() - new Date(a.wf_date).getTime();
                         });
 
-                        (recentArr.length <= 3) ? ($scope.recent = recentArr) : ($scope.recent = recentArr.slice(0, 3));
+                        (recentArr.length <= 5) ? ($scope.recent = recentArr) : ($scope.recent = recentArr.slice(0, 5));
 
-                        console.log('recent', $scope.recent);
+                        // console.log('recent', $scope.recent);
 
                         $scope.currentProjects = (current) => {
                             if(current === 'projects'){
@@ -41,14 +43,12 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                             } else if(current === 'recent'){
                                 return $scope.current = $scope.recent
                             }
-<<<<<<< HEAD
                         }
-                
-
-
-=======
-                        }   
->>>>>>> master
+                        // $rootScope.searchKey;
+                        if($rootScope.searchKey){
+                            $scope.currentProjects = $scope.projects;
+                            $scope.key = $rootScope.search;
+                        }
                     });
                 }
                 
@@ -78,10 +78,6 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                     });
                 }
 
-            } else {
-                $rootScope.isLoggedIn = false;
-                // $location.path('homeSplash');
-                // console.log('Auth0 Error', err);
             }
         });
     }

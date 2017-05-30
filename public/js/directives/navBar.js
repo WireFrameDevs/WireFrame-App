@@ -10,6 +10,10 @@ angular.module('app').directive('navBar', function () {
 
         },
         controller: function ($scope, $rootScope, mainService) {
+            $scope.searchBar = (search) => {
+                $rootScope.searchKey = search;
+            }
+
             $scope.logout = mainService.logout;
             if (!$scope.projectName) {
                 $scope.projectName = 'Untitled';
