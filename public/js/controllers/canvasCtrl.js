@@ -150,7 +150,7 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
   }
 
   $scope.createBox = function () {
-    let template = ("<svg class='draggable' ><rect ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' />  </svg>")
+    let template = ("<svg class='draggable' ><rect ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.95;cursor:move' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' />  </svg>")
     let linkFn = $compile(template);
     let content = linkFn($scope);
     $rootScope.canvas.append(content);
@@ -162,7 +162,7 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
 
 
   $scope.createEllipse = function () {
-    let template = ("<svg width='100%' height='100%'><ellipse ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragEllipse($event)' ng-click='showEllipseToolbar($event)' cx=" + ($scope.shadowXLocation + ($scope.shadowX / 2)) + " cy=" + ($scope.shadowYLocation + ($scope.shadowY / 2)) + " rx=" + ($scope.shadowX / 2) + " ry=" + ($scope.shadowY / 2) + " stroke='red' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' />    </svg>")
+    let template = ("<svg width='100%' height='100%'><ellipse ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragEllipse($event)' ng-click='showEllipseToolbar($event)' cx=" + ($scope.shadowXLocation + ($scope.shadowX / 2)) + " cy=" + ($scope.shadowYLocation + ($scope.shadowY / 2)) + " rx=" + ($scope.shadowX / 2) + " ry=" + ($scope.shadowY / 2) + " stroke='red' stroke-width='1' fill='white' style='opacity:0.95;cursor:move' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' />    </svg>")
     let linkFn = $compile(template);
     let content = linkFn($scope);
     $rootScope.canvas.append(content);
@@ -173,7 +173,7 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
   }
 
   $scope.createCircle = function () {
-    let template = ("<svg width='100%' height='100%'><circle ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragCircle($event)' ng-click='showCircleToolbar($event)' cx=" + ($scope.shadowXLocation + ($scope.shadowX / 2)) + " cy=" + ($scope.shadowYLocation + ($scope.shadowX / 2)) + " r=" + ($scope.shadowX / 2) + " stroke='red' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' />    </svg>")
+    let template = ("<svg width='100%' height='100%'><circle ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragCircle($event)' ng-click='showCircleToolbar($event)' cx=" + ($scope.shadowXLocation + ($scope.shadowX / 2)) + " cy=" + ($scope.shadowYLocation + ($scope.shadowX / 2)) + " r=" + ($scope.shadowX / 2) + " stroke='red' stroke-width='1' fill='white' style='opacity:0.95;cursor:move' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "' />    </svg>")
     let linkFn = $compile(template);
     let content = linkFn($scope);
     $rootScope.canvas.append(content);
@@ -184,7 +184,7 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
   }
 
   $scope.createRoundedBox = function () {
-    let template = ("<svg width='100%' height='100%'><rect ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " rx='20' ry='20' width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' is-selected='false' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "'  />    </svg>");
+    let template = ("<svg width='100%' height='100%'><rect ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " rx='5' ry='5' width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.95;cursor:move' is-selected='false' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "'  />    </svg>");
     let linkFn = $compile(template);
     let content = linkFn($scope);
     $rootScope.canvas.append(content);
@@ -195,7 +195,7 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
   }
 
   $scope.createImageBox = function () {
-    let template = ("<svg width='100%' height='100%'><image preserveAspectRatio='none' xlink:href='./images/image-box.svg'  ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' is-selected='false' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "'  />   </svg>");
+    let template = ("<svg width='100%' height='100%'><image preserveAspectRatio='none' xlink:href='./images/image-box.svg'  ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.95;cursor:move' is-selected='false' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "'  />   </svg>");
     let linkFn = $compile(template);
     let content = linkFn($scope);
     $rootScope.canvas.append(content);
@@ -206,7 +206,7 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
   }
 
   $scope.createVideoBox = function () {
-    let template = ("<svg width='100%' height='100%'><image preserveAspectRatio='none' xlink:href='./images/video-box.svg'  ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.8;cursor:move' is-selected='false' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "'  />   </svg>");
+    let template = ("<svg width='100%' height='100%'><image preserveAspectRatio='none' xlink:href='./images/video-box.svg'  ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.95;cursor:move' is-selected='false' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "'  />   </svg>");
     let linkFn = $compile(template);
     let content = linkFn($scope);
     $rootScope.canvas.append(content);
@@ -216,6 +216,27 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
     $scope.showRectToolbar("whatever", $scope.shadowXLocation, $scope.shadowYLocation);
   }
 
+  $scope.createScribbleBox = function () {
+    let template = ("<svg width='100%' height='100%'><image preserveAspectRatio='none' xlink:href='./images/scribblesframe.png'  ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.95;cursor:move' is-selected='false' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "'  />   </svg>");
+    let linkFn = $compile(template);
+    let content = linkFn($scope);
+    $rootScope.canvas.append(content);
+    $scope.showShadow2 = false;
+    $scope.toolbarShow = false;
+    $scope.shapeClass = angular.element(document.querySelector('#dynamicId' + $scope.tempXLocation + $scope.tempYLocation))
+    $scope.showRectToolbar("whatever", $scope.shadowXLocation, $scope.shadowYLocation);
+  }
+
+  $scope.createScribbleCircle = function () {
+    let template = ("<svg width='100%' height='100%'><image preserveAspectRatio='none' xlink:href='./images/scribble-circle.png'  ng-mousedown='disableDrawFunc($event)' ng-mousemove='dragRect($event)' ng-click='showRectToolbar($event)' x=" + $scope.shadowXLocation + " y=" + $scope.shadowYLocation + " width=" + $scope.shadowX + " height=" + $scope.shadowY + " stroke='red' stroke-width='1' fill='white' style='opacity:0.95;cursor:move' is-selected='false' id='dynamicId" + $scope.tempXLocation + $scope.tempYLocation + "'  />   </svg>");
+    let linkFn = $compile(template);
+    let content = linkFn($scope);
+    $rootScope.canvas.append(content);
+    $scope.showShadow2 = false;
+    $scope.toolbarShow = false;
+    $scope.shapeClass = angular.element(document.querySelector('#dynamicId' + $scope.tempXLocation + $scope.tempYLocation))
+    $scope.showRectToolbar("whatever", $scope.shadowXLocation, $scope.shadowYLocation);
+  }
 
   $scope.allowDrawFunc = function () {
     $scope.allowDraw = true;
@@ -308,7 +329,7 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
       "fill": $scope.elementColor,
       "stroke": "blue",
       "stroke-width": "2",
-      "opacity": "0.8",
+      "opacity": "0.95",
       "cursor": "move"
     }
     $scope.showShadow2 = false;
@@ -328,7 +349,7 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
       "fill": $scope.elementColor,
       "stroke": "blue",
       "stroke-width": "2",
-      "opacity": "0.8",
+      "opacity": "0.95",
       "cursor": "move"
     }
     $scope.showShadow2 = false;
