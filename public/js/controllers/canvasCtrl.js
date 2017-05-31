@@ -17,7 +17,9 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
   $scope.shapeWidth = 0;
 
 
-
+  if(!($stateParams.id)){
+    $rootScope.projectName = 'Untitled';
+  }
 
   $scope.getProject = function () {
     for (let i = 0; i < $rootScope.projectsForCanvas.length; i++) {
@@ -31,8 +33,8 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
         $scope.shapeClass = angular.element(document.querySelector('#canvas'));
       }
     }
-
   }
+
   $scope.getProject();
 
 
