@@ -5,15 +5,14 @@ html{
 }
 .content{
     position: relative;
-    height: 100vh;
+    height: auto;
     width: 100vw;
     background: rgba(255,255,255,0.6);
     padding: 50px;
-    // z-index: -1;
+    // left: 300px;
+    z-index: -1;
 
-    .main-content-wrap{
-      
-    }
+   
 }
 
 .view-wrapper{
