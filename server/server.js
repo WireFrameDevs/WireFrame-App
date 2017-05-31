@@ -42,7 +42,9 @@ passport.use(new Auth0Strategy({
         db.get_user([profile.id], function (err, user) {
             user = user[0];
             if (!user) {
-                console.log('CREATING USER');
+                console.log('====================================');
+                console.log(profile);
+                console.log('====================================');
                 db.create_user([profile.name.givenName, profile.emails[0].value, profile.picture, profile.id], function (err, user) {
                     console.log('USER CREATED', user);
                     return done(err, user[0]);
