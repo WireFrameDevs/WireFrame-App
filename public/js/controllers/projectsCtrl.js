@@ -21,6 +21,8 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                         $rootScope.projectsForCanvas = response;
                         
                         $scope.current = $scope.projects;
+                        $scope.currentTab = 'Projects';
+                        $scope.activeP = 'active-item';
 
                         // Favorite Projects
                         for (let i = 0; i < response.length; i++) {
@@ -41,12 +43,24 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
 
                         $scope.currentProjects = (current) => {
                             if (current === 'projects') {
+                                $scope.currentTab = 'Projects';
+                                $scope.activeP = 'active-item';
+                                $scope.activeF = '';
+                                $scope.activeR = '';
                                 $rootScope.isTab = false;
                                 return $scope.current = $scope.projects
                             } else if (current === 'favProjects') {
+                                $scope.currentTab = 'Starred';
+                                $scope.activeF = 'active-item';
+                                $scope.activeP = '';
+                                $scope.activeR = '';
                                 $rootScope.isTab = true;
                                 return $scope.current = $scope.favProjects
                             } else if (current === 'recent') {
+                                $scope.currentTab = 'Recent';
+                                $scope.activeR = 'active-item';
+                                $scope.activeP = '';
+                                $scope.activeF = '';
                                 $rootScope.isTab = false;
                                 return $scope.current = $scope.recent
                             }
