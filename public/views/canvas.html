@@ -3,21 +3,12 @@
   <div style="width:100%;height:93.8vh;z-index:-1;background:white;" ng-mousedown="startDraw($event)"
     ng-mouseup="endDraw($event)" ng-mousemove="draw($event)">
     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="cursor:crosshair;z-index:-1;">
-      <defs>
-        <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
-          <path d="M 8 0 L 0 0 0 8" fill="none" stroke="grey" stroke-width="0.5" />
-        </pattern>
-        <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
-          <rect width="80" height="80" fill="url(#smallGrid)" />
-          <path d="M 80 0 L 0 0 0 80" fill="none" stroke="grey" stroke-width="1" />
-        </pattern>
-      </defs>
       <rect ng-show="showShadow" ng-attr-x="{{ xLocation }}" ng-attr-y="{{ yLocation }}" ng-attr-width="{{ shapeWidth }}" ng-attr-height="{{ shapeHeight }}" style="fill:rgba(78,139,168,0.3);stroke-width:1;stroke:rgb(0,0,0)"
       />
       <rect ng-show="showShadow2" ng-attr-x="{{ shadowXLocation }}" ng-attr-y="{{ shadowYLocation }}" ng-attr-width="{{ shadowX }}" ng-attr-height="{{ shadowY }}"
         style="fill:rgba(0,0,168,0.3);stroke-width:1;stroke:rgb(0,0,0)" />
 
-      <rect width="100%" height="100%" fill="url(#grid)" />
+      <image width="100%" height="100%" xlink:href='./images/grid.png' preserveAspectRatio='none'/>
       <svg id="canvas"></svg>
     </svg>
   </div>
@@ -177,6 +168,16 @@
       </div>
     </div>
   </div>
+</div>
+<div id="ImageToolbar">
+  <div ng-if="imageToolbarShow" ng-style="{{ imageToolbarStyle }}" class="toolbar bottom tool-width-image">
+    <span class="tooltip__tip"></span>
+    <div ng-click="deleteShape()" class="button-square" style="margin-right: 0px">
+      <div class="shine-square"></div>
+      <i class="material-icons trash">delete</i>
+    </div>
+  </div>
+</div>
 </div>
 </div>
 </div>
