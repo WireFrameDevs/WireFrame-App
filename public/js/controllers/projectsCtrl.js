@@ -1,7 +1,7 @@
 angular.module('app').controller('projectsCtrl', function($scope, mainService, $rootScope, $window, $compile) {
 
   function operationThumbnailGo(index, html) {
-    let desertStorm = '#project' + index + ' div > svg'
+    let desertStorm = '#project' + index + ' div > svg';
     let projectThumb = angular.element(document.querySelector(desertStorm));
     projectThumb.append(html)
   }
@@ -56,7 +56,7 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
               ? ($scope.recent = recentArr)
               : ($scope.recent = recentArr.slice(0, 5));
 
-            // console.log('recent', $scope.recent);   
+            // console.log('recent', $scope.recent);
 
             $scope.currentProjects = (current) => {
                 if (current === 'projects') {
@@ -65,21 +65,57 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                     $scope.activeF = '';
                     $scope.activeR = '';
                     $rootScope.isTab = false;
-                    return $scope.current = $scope.projects
+                    $scope.current = $scope.projects;
+                    setTimeout(function() {
+                      for (let i = 0; i < $scope.projects.length; i++) {
+                        let desertStorm = '#project' + i + ' div > svg';
+                        let htmlEmptier = angular.element(document.querySelector(desertStorm));
+                        htmlEmptier.empty();
+                        let template = ($scope.projects[i].wf_text);
+                        let linkFn = $compile(template);
+                        let content = linkFn($scope);
+                        operationThumbnailGo(i, content);
+                      }
+                    }, 100)
+                    return;
                 } else if (current === 'favProjects') {
                     $scope.currentTab = 'Starred';
                     $scope.activeF = 'active-item';
                     $scope.activeP = '';
                     $scope.activeR = '';
                     $rootScope.isTab = true;
-                    return $scope.current = $scope.favProjects
+                    $scope.current = $scope.favProjects;
+                    setTimeout(function() {
+                      for (let i = 0; i < $scope.favProjects.length; i++) {
+                        let desertStorm = '#project' + i + ' div > svg';
+                        let htmlEmptier = angular.element(document.querySelector(desertStorm));
+                        htmlEmptier.empty();
+                        let template = ($scope.favProjects[i].wf_text);
+                        let linkFn = $compile(template);
+                        let content = linkFn($scope);
+                        operationThumbnailGo(i, content);
+                      }
+                    }, 100)
+                    return;
                 } else if (current === 'recent') {
                     $scope.currentTab = 'Recent';
                     $scope.activeR = 'active-item';
                     $scope.activeP = '';
                     $scope.activeF = '';
                     $rootScope.isTab = false;
-                    return $scope.current = $scope.recent
+                    $scope.current = $scope.recent;
+                    setTimeout(function() {
+                      for (let i = 0; i < $scope.recent.length; i++) {
+                        let desertStorm = '#project' + i + ' div > svg';
+                        let htmlEmptier = angular.element(document.querySelector(desertStorm));
+                        htmlEmptier.empty();
+                        let template = ($scope.recent[i].wf_text);
+                        let linkFn = $compile(template);
+                        let content = linkFn($scope);
+                        operationThumbnailGo(i, content);
+                      }
+                    }, 100)
+                    return;
                 }
             }
 
