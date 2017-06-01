@@ -1,4 +1,4 @@
-<div class="view-wrapper">
+
     <div class="sidebar">
         <div class="sidebar-menu font-white">
             <div class="sidebar-item" ng-click="currentProjects('projects')">
@@ -17,19 +17,24 @@
     </div>
 
     <div class="content">
-            <h4>Projects</h4>
-            <!--USER PROJECT CARDS-->
-            <div class="flip-container">
-                <!--ADD NEW PROJECT CARD-->
-                <div ui-sref="canvas" class="card-add">
-                    <div class="add-new">
-                        <i class="material-icons icon-extra-large font-charcoal">add_circle_outline</i>
-                        <h4 class="font-charcoal">New Project</h4>
-                    </div>
-                </div>
-                <div class="card-wrap" ng-repeat="project in current | filter: searchKey">
-                    <project-card></project-card>
+    </div>
+
+    <div>
+        
+    </div>
+    <div class="content-cards">
+        <h4>Projects</h4>
+        <!--USER PROJECT CARDS-->
+        <div class="flip-container">
+            <!--ADD NEW PROJECT CARD-->
+            <div ui-sref="canvas" class="card-add">
+                <div class="add-new">
+                    <i class="material-icons icon-extra-large font-charcoal">add_circle_outline</i>
+                    <h4 class="font-charcoal">New Project</h4>
                 </div>
             </div>
+            <div class="card-wrap" ng-repeat="project in current | filter:searchKey">
+                <project-card></project-card>
+            </div>
+        </div>
     </div>
-</div>
