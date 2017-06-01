@@ -11,11 +11,11 @@ angular.module('app').directive('navBar', function () {
         },
         controller: function ($scope, $rootScope, mainService, $stateParams, $location) {
 
-            // $scope.goToProject = () => {
-            //     if (isLoggenIn) {
-            //         $state.go('projects');
-            //     }
-            // }
+            $scope.goToProjects = () => {
+                if($rootScope.isLoggedIn){
+                    $location.path('projects');
+                }
+            }
 
             $scope.searchBar = (search) => {
                 $rootScope.searchKey = search;
