@@ -1,26 +1,25 @@
 //BACKGROUND IMAGE
 html{
     background: url('../images/mainBG.jpg') no-repeat center center fixed; 
-    background-size: cover;
+    overflow-x: hidden;
 }
 .content{
-    position: relative;
+    position: fixed;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     background: rgba(255,255,255,0.6);
     padding: 50px;
-    // z-index: -1;
-
-    .main-content-wrap{
-      
-    }
-}
-
-.view-wrapper{
-    display: flex;
+    left: 300px;
     z-index: -2;
 }
-
+.content-cards{
+    position: absolute;
+    height: 100vh;
+    width: 83%;
+    padding: 50px;
+    left: 300px;
+    z-index: -2;
+}
 
 
 
