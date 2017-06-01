@@ -95,15 +95,12 @@
 
 
 
-
-
-
-
 .flip-container {
     perspective: 1000;
-    position: relative;
+    position: absolute;
     display: flex;
     flex-wrap: wrap;
+    z-index: -1;
   
 }
 .flip-container .card.flipped{

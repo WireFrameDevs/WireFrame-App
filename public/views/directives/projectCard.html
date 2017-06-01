@@ -4,9 +4,11 @@
     <div class="face front" >
         <div class="black-triangle"></div>
         <i class="material-icons gear" ng-click="isFlipped = !isFlipped">settings</i>
+
         <svg ui-sref="mycanvas({ id: project.wf_id })" viewBox="0 0 1500 1000" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
 
             <image width="100%" height="100%" xlink:href='./images/grid.png' preserveAspectRatio='none'/>
+
         </svg>
         <div class="card-footer">
             <p ui-sref="mycanvas({id: project.wf_id})" ng-model="isFav.wf_id" ng-init="isFav.wf_id=project.wf_id">{{project.wf_name}}</p>
