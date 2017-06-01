@@ -4,16 +4,11 @@
     <div class="face front" >
         <div class="black-triangle"></div>
         <i class="material-icons gear" ng-click="isFlipped = !isFlipped">settings</i>
-        <svg ui-sref="mycanvas({id: project.wf_id})" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
-                    <path d="M 8 0 L 0 0 0 8" fill="none" stroke="black" stroke-width="0.2"/>
-                </pattern>
-                <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
-                    <rect width="80" height="80" fill="url(#smallGrid)" />
-                </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <svg ui-sref="mycanvas({ id: project.wf_id })" viewBox="0 0 1500 1000" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+
+            <image width="100%" height="100%" xlink:href='./images/grid.png' preserveAspectRatio='none'/>
+
         </svg>
         <div class="card-footer">
             <p ui-sref="mycanvas({id: project.wf_id})" ng-model="isFav.wf_id" ng-init="isFav.wf_id=project.wf_id">{{project.wf_name}}</p>
