@@ -36,6 +36,8 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
             }, 100)
 
             $scope.current = $scope.projects;
+            $scope.currentTab = 'Projects';
+            $scope.activeP = 'active-item';
 
             // Favorite Projects
             for (let i = 0; i < response.length; i++) {
@@ -54,19 +56,31 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
               ? ($scope.recent = recentArr)
               : ($scope.recent = recentArr.slice(0, 5));
 
-            // console.log('recent', $scope.recent);
+            // console.log('recent', $scope.recent);   
 
             $scope.currentProjects = (current) => {
-              if (current === 'projects') {
-                $rootScope.isTab = false;
-                return $scope.current = $scope.projects
-              } else if (current === 'favProjects') {
-                $rootScope.isTab = true;
-                return $scope.current = $scope.favProjects
-              } else if (current === 'recent') {
-                $rootScope.isTab = false;
-                return $scope.current = $scope.recent
-              }
+                if (current === 'projects') {
+                    $scope.currentTab = 'Projects';
+                    $scope.activeP = 'active-item';
+                    $scope.activeF = '';
+                    $scope.activeR = '';
+                    $rootScope.isTab = false;
+                    return $scope.current = $scope.projects
+                } else if (current === 'favProjects') {
+                    $scope.currentTab = 'Starred';
+                    $scope.activeF = 'active-item';
+                    $scope.activeP = '';
+                    $scope.activeR = '';
+                    $rootScope.isTab = true;
+                    return $scope.current = $scope.favProjects
+                } else if (current === 'recent') {
+                    $scope.currentTab = 'Recent';
+                    $scope.activeR = 'active-item';
+                    $scope.activeP = '';
+                    $scope.activeF = '';
+                    $rootScope.isTab = false;
+                    return $scope.current = $scope.recent
+                }
             }
 
             if ($rootScope.searchKey) {
