@@ -20,12 +20,10 @@ module.exports = {
 
   updateProject: (req, res) => {
   	let newInfo = [req.body.wf_name, req.body.wf_text, req.body.fav_wf, req.body.wf_date, req.body.wf_id];
-    console.log(newInfo, 'before db')
 
   	db.update_project(newInfo, (err, updated) => {
   		(!err) ? res.send(updated) : res.send(err);
   	});
-    console.log(newInfo, 'after db')
   },
 
   updateFav: (req, res) => {
