@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="card-wrap" ng-repeat="project in current | filter: searchKey">
-                    <project-card></project-card>
+                    <project-card id="{{'project' + $index}}"></project-card>
                 </div>
             </div>
             
