@@ -16,9 +16,12 @@ angular.module('app').directive('navBar', function () {
                     $location.path('projects');
                 }
             }
+            
+            $rootScope.searchKey = ""
 
             $scope.searchBar = (search) => {
                 $rootScope.searchKey = search;
+
             }
             
             $scope.logProjectName = (projectName) => {
@@ -44,7 +47,7 @@ angular.module('app').directive('navBar', function () {
                     mainService.updateProject(projectData).then((response) => {
                         $scope.updated = response;
                     });
-                    
+
                 } else{
                     // CREATE NEW PROJECT
                     projectData.fav_wf = false;
