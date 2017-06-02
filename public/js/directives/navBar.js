@@ -16,12 +16,14 @@ angular.module('app').directive('navBar', function () {
             //         $state.go('projects');
             //     }
             // }
+            $rootScope.searchKey = ""
 
             $scope.searchBar = (search) => {
                 $rootScope.searchKey = search;
+
             }
             $scope.logout = mainService.logout;
-            
+
             $scope.logProjectName = function(projectName) {
                 $scope.projectNameForReal = projectName;
             }
@@ -38,7 +40,7 @@ angular.module('app').directive('navBar', function () {
                     mainService.updateProject(projectData).then((response) => {
                         $scope.updated = response;
                     });
-                    
+
                 } else{
                     // CREATE NEW PROJECT
                     mainService.createProject(projectData).then((response) => {

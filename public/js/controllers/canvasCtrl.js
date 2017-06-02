@@ -23,6 +23,7 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
   }
 
   $scope.getProject = function () {
+    $rootScope.searchKey = "";
     for (let i = 0; i < $rootScope.projectsForCanvas.length; i++) {
       if ($rootScope.projectsForCanvas[i].wf_id === parseInt($stateParams.id)) {
         $scope.projectHTML = $rootScope.projectsForCanvas[i].wf_text

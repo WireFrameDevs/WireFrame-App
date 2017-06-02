@@ -30,7 +30,7 @@
                         <h4 class="font-charcoal">New Project</h4>
                     </div>
                 </div>
-                <div class="card-wrap" ng-repeat="project in current | filter: searchKey">
+                <div class="card-wrap"  ng-repeat="project in current | filter: getFilteredThumbnails as filtered">
                     <project-card id="{{'project' + $index}}"></project-card>
                 </div>
             </div>

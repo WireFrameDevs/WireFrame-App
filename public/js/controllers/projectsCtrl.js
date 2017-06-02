@@ -25,10 +25,11 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
             // All Projects
             $scope.projects = response;
             $rootScope.projectsForCanvas = response;
+            $scope.filtered = response;
 
             setTimeout(function() {
               for (let i = 0; i < $rootScope.projectsForCanvas.length; i++) {
-                let template = ($rootScope.projectsForCanvas[i].wf_text);
+                let template = ("<svg><image width='100%' height='100%' xlink:href='./images/grid.png' preserveAspectRatio='none'/></svg>" + $rootScope.projectsForCanvas[i].wf_text);
                 let linkFn = $compile(template);
                 let content = linkFn($scope);
                 operationThumbnailGo(i, content);
@@ -71,7 +72,7 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                         let desertStorm = '#project' + i + ' div > svg';
                         let htmlEmptier = angular.element(document.querySelector(desertStorm));
                         htmlEmptier.empty();
-                        let template = ($scope.projects[i].wf_text);
+                        let template = ("<svg><image width='100%' height='100%' xlink:href='./images/grid.png' preserveAspectRatio='none'/></svg>" + $scope.projects[i].wf_text);
                         let linkFn = $compile(template);
                         let content = linkFn($scope);
                         operationThumbnailGo(i, content);
@@ -90,7 +91,7 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                         let desertStorm = '#project' + i + ' div > svg';
                         let htmlEmptier = angular.element(document.querySelector(desertStorm));
                         htmlEmptier.empty();
-                        let template = ($scope.favProjects[i].wf_text);
+                        let template = ("<svg><image width='100%' height='100%' xlink:href='./images/grid.png' preserveAspectRatio='none'/></svg>" + $scope.favProjects[i].wf_text);
                         let linkFn = $compile(template);
                         let content = linkFn($scope);
                         operationThumbnailGo(i, content);
@@ -109,7 +110,7 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                         let desertStorm = '#project' + i + ' div > svg';
                         let htmlEmptier = angular.element(document.querySelector(desertStorm));
                         htmlEmptier.empty();
-                        let template = ($scope.recent[i].wf_text);
+                        let template = ("<svg><image width='100%' height='100%' xlink:href='./images/grid.png' preserveAspectRatio='none'/></svg>" + $scope.recent[i].wf_text);
                         let linkFn = $compile(template);
                         let content = linkFn($scope);
                         operationThumbnailGo(i, content);
@@ -119,12 +120,30 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                 }
             }
 
-            if ($rootScope.searchKey) {
-              $scope.currentProjects = $scope.projects;
-              $scope.key = $rootScope.search;
+          });
+        }
+
+        $scope.getFilteredThumbnails = function(project) {
+          let re = new RegExp('^' + $scope.searchKey, 'i');
+          let result =  re.test(project.wf_name)
+          for (let i = 0; i < $scope.filtered.length; i++) {
+            for(let j = 0; j < $rootScope.projectsForCanvas.length; j++) {
+              if ($scope.filtered[i].wf_id === $rootScope.projectsForCanvas[j].wf_id) {
+                let desertStorm = '#project' + i + ' div > svg';
+                let htmlEmptier = angular.element(document.querySelector(desertStorm));
+                htmlEmptier.empty();
+                let template = ("<svg><image width='100%' height='100%' xlink:href='./images/grid.png' preserveAspectRatio='none'/></svg>" + $scope.filtered[i].wf_text);
+                let linkFn = $compile(template);
+                let content = linkFn($scope);
+                operationThumbnailGo(i, content);
+
+               }
             }
 
-          });
+          }
+          return result;
+
+
         }
 
         $scope.getProjects();
