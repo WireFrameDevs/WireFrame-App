@@ -1,15 +1,15 @@
 
     <div class="sidebar">
         <div class="sidebar-menu font-white">
-            <div class="sidebar-item" ng-click="currentProjects('projects')">
+            <div class="sidebar-item" ng-class="activeP" ng-click="currentProjects('projects')">
                 <i class="material-icons icon-large">folder_open</i>
                 <p>All Projects</p>
             </div>
-            <div class="sidebar-item" ng-click="currentProjects('recent')">
+            <div class="sidebar-item" ng-class="activeR" ng-click="currentProjects('recent')">
                 <i class="material-icons icon-large">access_time</i>
                 <p>Recent</p>
             </div>
-            <div class="sidebar-item" ng-click="currentProjects('favProjects')">
+            <div class="sidebar-item" ng-class="activeF" ng-click="currentProjects('favProjects')">
                 <i class="material-icons icon-large">star</i>
                 <p>Starred</p>
             </div>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="content-cards">
-            <h4>Projects</h4>
+            <h4>{{currentTab}}</h4>
             <!--USER PROJECT CARDS-->
             <div class="flip-container">
                 <!--ADD NEW PROJECT CARD-->
@@ -30,7 +30,7 @@
                         <h4 class="font-charcoal">New Project</h4>
                     </div>
                 </div>
-                <div class="card-wrap" ng-repeat="project in current | filter: searchKey">
+                <div class="card-wrap"  ng-repeat="project in current | filter: getFilteredThumbnails as filtered">
                     <project-card id="{{'project' + $index}}"></project-card>
                 </div>
             </div>

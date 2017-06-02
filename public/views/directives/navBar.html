@@ -4,11 +4,11 @@
             <div class="bar"></div>
         </div>-->
         <div class="shine2"></div>
-       
+
     </nav>
     <div class="nav-onTop">
         <div class="nav-item">
-            <img ui-sref="projects" src="./images/WireframeLogo-02.svg" style="height: 38px; margin-left: 20px">
+            <img ng-click="goToProjects()" src="./images/WireframeLogo-02.svg" style="height: 38px; margin-left: 20px">
             <!--<img src="./images/WireframeLogo-03.svg" style="height: 30px; margin-left: 30px">-->
             <input type="text" placeholder="Search projects" style="margin-left: 80px" ng-model="search" ng-change="searchBar(search)" ng-if="'projects' | isState">
         </div>
@@ -21,7 +21,7 @@
                 </div>
                 <div class="nav-item" ng-show="editorEnabled">
                     <form ng-submit="editorEnabled=!editorEnabled">
-                        <input class="titleEdit" ng-model="projectName" ng-change="logProjectName(projectName)" >
+                        <input class="titleEdit" ng-model="projectName" ng-change="logProjectName(projectName)">
 
                     </form>
                     <i class="material-icons icon-small font-white" ng-click="editorEnabled=! editorEnabled">check</i>
@@ -41,7 +41,7 @@
         <div class="nav-item">
             <!--SAVE PROJECT-->
             <div class="button orange" ng-click="saveProject()" id="save" text="Save Project" ng-if="('canvas' | isState) || ('mycanvas' | isState)" style="padding: 5px 11px"><i class="material-icons" style="margin: 0">save</i></div>
-            
+
 
 
             <!--TOOLTIP-->
@@ -49,8 +49,8 @@
                 <span class="tooltip__tip"></span>
                 <div class="tooltip__content font-black">Save Project</div>
             </div>-->
-            
-            
+
+
             <!--Log-IN-->
             <a class="button green" href="/auth" ng-if="!isLoggedIn"><div class="shine"></div>Log In</a>
             <!--SIGN UP-->

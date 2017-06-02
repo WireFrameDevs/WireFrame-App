@@ -40,3 +40,10 @@
     border-bottom-left-radius: $border-radius-extreme;
     cursor: pointer;
 }
+
+.active-item{
+    background: rgba(51,51,51,0.7);
+    border-top-left-radius: $border-radius-extreme;
+    border-bottom-left-radius: $border-radius-extreme;
+    cursor: pointer;
+}
