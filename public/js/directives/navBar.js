@@ -11,45 +11,55 @@ angular.module('app').directive('navBar', function () {
         },
         controller: function ($scope, $rootScope, mainService, $stateParams, $location) {
 
-            // $scope.goToProject = () => {
-            //     if (isLoggenIn) {
-            //         $state.go('projects');
-            //     }
-            // }
+            $scope.goToProjects = () => {
+                if($rootScope.isLoggedIn){
+                    $location.path('projects');
+                }
+            }
+            
             $rootScope.searchKey = ""
 
             $scope.searchBar = (search) => {
                 $rootScope.searchKey = search;
 
             }
-            $scope.logout = mainService.logout;
-
-            $scope.logProjectName = function(projectName) {
-                $scope.projectNameForReal = projectName;
+            
+            $scope.logProjectName = (projectName) => {
+                $rootScope.projectName = projectName;
             }
-            $scope.saveProject = function() {
+
+            $scope.saveProject = () => {
+                
+                $rootScope.projectName = $scope.projectName;
+                $scope.logProjectName($rootScope.projectName);
+
                 let projectData = {
                     user_id: $rootScope.userId,
                     wf_date: new Date(),
-                    wf_name: $scope.projectNameForReal,
+                    wf_name: $rootScope.projectName,
                     wf_text: $rootScope.canvas[0].innerHTML
                 }
+                
                 if($stateParams.id){
                     // UPDATE PROJECT
                     projectData.wf_id = $stateParams.id;
+                    projectData.fav_wf = $rootScope.projectFavVal;
                     mainService.updateProject(projectData).then((response) => {
                         $scope.updated = response;
                     });
 
                 } else{
                     // CREATE NEW PROJECT
+                    projectData.fav_wf = false;
                     mainService.createProject(projectData).then((response) => {
-                        // $rootScope.newPro = response.data[0];
+                        $rootScope.newPro = response.data[0];
                         $scope.newId = response.data[0].wf_id;
-                        // $location.url('projects');
+                        $location.url('canvas/' + $scope.newId);
+                        $rootScope.isNewProject = true;
                     });
 
                 }
+
                 swal({
                     title: 'Save Successful!',
                     text: 'Scribble on my scribble pal!',
@@ -59,6 +69,8 @@ angular.module('app').directive('navBar', function () {
                     }
                 )
             }
+
+            $scope.logout = mainService.logout;
         }
     }
 });

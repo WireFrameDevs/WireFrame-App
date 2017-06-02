@@ -6,11 +6,12 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
     projectThumb.append(html)
   }
 
+  $rootScope.isLoggedIn = false;
+
   function getUser() {
     // console.log('getUser function ran!');
     mainService.getUser().then((user) => {
       if (user.status === 404) {
-        $rootScope.isLoggedIn = false;
         $window.location.href = '/auth';
       }
       if (user) {
