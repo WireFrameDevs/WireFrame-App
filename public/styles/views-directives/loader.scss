@@ -1,8 +1,12 @@
+
+
 .loader{
   position: fixed;
-  background: black;
+  background: rgba(0,0,0,0.95);
   width: 100%;
   height: 100%;
+  z-index: 3;
+  top: 0;
 
   img{
     position: absolute;
@@ -13,22 +17,23 @@
     height: 52px;
     z-index: 1;
     margin: auto;
-    animation: fadeLogo 4.5s linear infinite both;
+    animation: rotateAll 4.5s linear infinite both,
+    fadeLogo 4.5s linear infinite both;
   }
 }
 
 @keyframes fadeLogo{
   0%{clip-path: polygon(100% 0%, 0% 0%, 0% 50%, 100% 50%)};
-  33.333333% {clip-path: polygon(100% 0%, 0% 0%, 0% 55%, 100% 55%) };
-  34.074074% {clip-path: polygon(100% 0%, 0% 0%, 0% 60%, 100% 60%) };
-  34.814815% {clip-path: polygon(100% 0%, 0% 0%, 0% 65%, 100% 65%) };
-  35.555556% {clip-path: polygon(100% 0%, 0% 0%, 0% 70%, 100% 70%) };
-  36.296296% {clip-path: polygon(100% 0%, 0% 0%, 0% 80%, 100% 80%) };
-  37.037037% {clip-path: polygon(100% 0%, 0% 0%, 0% 85%, 100% 85%) };
-  37.777778% {clip-path: polygon(100% 0%, 0% 0%, 0% 90%, 100% 90%) };
-  38.518519% {clip-path: polygon(100% 0%, 0% 0%, 0% 95%, 100% 95%) };
-  39.259259% {clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) };
-  40% {clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) }; //end
+  28.333333% {clip-path: polygon(100% 0%, 0% 0%, 0% 55%, 100% 55%) };
+  33.074074% {clip-path: polygon(100% 0%, 0% 0%, 0% 60%, 100% 60%) };
+  35.014815% {clip-path: polygon(100% 0%, 0% 0%, 0% 65%, 100% 65%) };
+  35.155556% {clip-path: polygon(100% 0%, 0% 0%, 0% 70%, 100% 70%) };
+  35.296296% {clip-path: polygon(100% 0%, 0% 0%, 0% 80%, 100% 80%) };
+  35.37037% {clip-path: polygon(100% 0%, 0% 0%, 0% 85%, 100% 85%) };
+  35.677778% {clip-path: polygon(100% 0%, 0% 0%, 0% 90%, 100% 90%) };
+  36.518519% {clip-path: polygon(100% 0%, 0% 0%, 0% 95%, 100% 95%) };
+  37.259259% {clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) };
+  38.26% {clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) }; //end
   44.444444% {clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) };
   100%{clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)};
 
