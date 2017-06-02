@@ -25,3 +25,15 @@
     font-size: 30px !important;
     user-select: none;
 }
+
+.back-arrow{
+    cursor: pointer;
+    color: $brand-black;
+    font-size: 30px !important;
+    user-select: none;
+    
+}
+.back-arrow:hover{
+    color: $brand-blue;
+
+}

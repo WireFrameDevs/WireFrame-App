@@ -28,10 +28,14 @@ angular.module('app').directive('navBar', function () {
                 $rootScope.projectName = projectName;
             }
 
+
+
             $scope.saveProject = () => {
+                $rootScope.loader();
                 
                 $rootScope.projectName = $scope.projectName;
                 $scope.logProjectName($rootScope.projectName);
+
 
                 let projectData = {
                     user_id: $rootScope.userId,
@@ -60,14 +64,13 @@ angular.module('app').directive('navBar', function () {
 
                 }
 
-                swal({
+                let saveSwal = {
                     title: 'Save Successful!',
                     text: 'Scribble on my scribble pal!',
                     type: 'success',
                     imageUrl: 'https://media.giphy.com/media/XreQmk7ETCak0/giphy.gif'
-
-                    }
-                )
+                }
+                $rootScope.loader(saveSwal);
             }
 
             $scope.logout = mainService.logout;

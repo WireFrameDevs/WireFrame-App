@@ -1,4 +1,15 @@
-angular.module('app').controller('projectsCtrl', function($scope, mainService, $rootScope, $window, $compile) {
+
+angular.module('app').controller('projectsCtrl', function($scope, mainService, $rootScope, $window, $compile, $timeout) {
+
+    $rootScope.showLoader = false;
+
+    $rootScope.loader = function (sweetObject) {
+        $rootScope.showLoader = true;
+        $timeout(function () {
+            $rootScope.showLoader = false;
+            swal(sweetObject);
+        }, 2500)
+    }
 
   function operationThumbnailGo(index, html) {
     let desertStorm = '#project' + index + ' div > svg';
@@ -120,7 +131,7 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
         }
 
         $scope.getFilteredThumbnails = function(project) {
-          console.log('filtering');
+         
           let re = new RegExp('^' + $scope.searchKey, 'i');
           let result =  re.test(project.wf_name)
           for (let i = 0; i < $scope.filtered.length; i++) {
@@ -164,15 +175,24 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
             }
           });
         }
-
         $scope.deleteProject = (projectId) => {
-          mainService.deleteProject(projectId).then((response) => {
-            $scope.deleted = response;
-            $scope.getProjects();
-          });
-          swal({ title: 'Project Deleted!', text: 'FOR-EVER!', type: 'success', imageUrl: 'https://media.giphy.com/media/hEwkspP1OllJK/giphy.gif' });
+            $rootScope.loader();
+            mainService.deleteProject(projectId).then((response) => {
+                $scope.deleted = response;
+                $scope.getProjects();
+                let deleteSwal = {
+                    title: 'Project Deleted!',
+                    text: 'FOR-EVER!',
+                    type: 'success',
+                    imageUrl: 'https://media.giphy.com/media/hEwkspP1OllJK/giphy.gif'
+                };
+                $rootScope.loader(deleteSwal);
+            });
+
         }
 
+      
+      
       }
     });
   }

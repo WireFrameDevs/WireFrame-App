@@ -129,9 +129,18 @@
 
 .flip-container .card .back {
     transform: rotateX(-180deg); 
-    background: rgba(255,255,255,1);
+    background: url(https://wallpaperscraft.com/image/cracks_texture_background_light_surface_50654_1920x1200.jpg) center center fixed;
+    background-size: cover;
     height: 100%;
     width: 100%;
     overflow: hidden;
     border-radius: $border-radius-huge;
+    color: white;
+
+    .black-is-back{
+        width: 100%;
+        height: 100%;
+        background: $brand-gray;
+        padding: 20px;
+    }
 }
