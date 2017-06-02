@@ -1,4 +1,14 @@
-angular.module('app').controller('projectsCtrl', function($scope, mainService, $rootScope, $window){
+angular.module('app').controller('projectsCtrl', function($scope, mainService, $rootScope, $window, $timeout){
+  
+	$rootScope.showLoader = false;
+
+    $rootScope.loader = function(sweetObject){
+        $rootScope.showLoader = true;
+        $timeout(function(){
+            $rootScope.showLoader = false;
+            swal(sweetObject);
+        }, 2500)
+    }
 
     function getUser() {
         // console.log('getUser function ran!');
@@ -84,18 +94,22 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                     });
                 }
 
+                
+
                 $scope.deleteProject = (projectId) => {
+                    $rootScope.loader();
                     mainService.deleteProject(projectId).then((response) => {
                         $scope.deleted = response;
                         $scope.getProjects();
+                        let deleteSwal = {
+                            title: 'Project Deleted!',
+                            text: 'FOR-EVER!',
+                            type: 'success',
+                            imageUrl: 'https://media.giphy.com/media/hEwkspP1OllJK/giphy.gif'
+                        };
+                        $rootScope.loader(deleteSwal);
                     });
-                    swal({
-                        title: 'Project Deleted!',
-                        text: 'FOR-EVER!',
-                        type: 'success',
-                        imageUrl: 'https://media.giphy.com/media/hEwkspP1OllJK/giphy.gif'
-
-                    });
+                    
                 }
 
             }

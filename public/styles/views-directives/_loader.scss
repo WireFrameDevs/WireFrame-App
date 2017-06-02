@@ -7,46 +7,68 @@
   height: 100%;
   z-index: 3;
   top: 0;
-
-  img{
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .animations-container{
     z-index: 1;
-    margin: auto;
-    animation: rotateAll 4.5s linear infinite both,
-    fadeLogo 4.5s linear infinite both;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .rotateLogo{
+      animation: rotateAll 2.5s linear infinite both;
+      z-index: 1;
+      img{
+        height: 52px;
+        z-index: 2;
+        animation: fadeLogo 2.5s linear both;
+      }
+    }
   }
 }
 
-@keyframes fadeLogo{
-  0%{clip-path: polygon(100% 0%, 0% 0%, 0% 50%, 100% 50%)};
-  28.333333% {clip-path: polygon(100% 0%, 0% 0%, 0% 55%, 100% 55%) };
-  33.074074% {clip-path: polygon(100% 0%, 0% 0%, 0% 60%, 100% 60%) };
-  35.014815% {clip-path: polygon(100% 0%, 0% 0%, 0% 65%, 100% 65%) };
-  35.155556% {clip-path: polygon(100% 0%, 0% 0%, 0% 70%, 100% 70%) };
-  35.296296% {clip-path: polygon(100% 0%, 0% 0%, 0% 80%, 100% 80%) };
-  35.37037% {clip-path: polygon(100% 0%, 0% 0%, 0% 85%, 100% 85%) };
-  35.677778% {clip-path: polygon(100% 0%, 0% 0%, 0% 90%, 100% 90%) };
-  36.518519% {clip-path: polygon(100% 0%, 0% 0%, 0% 95%, 100% 95%) };
-  37.259259% {clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) };
-  38.26% {clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) }; //end
-  44.444444% {clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) };
-  100%{clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)};
 
+@keyframes fadeLogo { 
+  0% { clip-path: polygon(100% 0%, 0% 0%, 0% 50%, 100% 50%); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  33.333333% { clip-path: polygon(100% 0%, 0% 0%, 0% 50%, 100% 50%)}
+  34.074074% { clip-path: polygon(100% 0%, 0% 0%, 0% 75%, 100% 75%) }
+  34.814815% { clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) }//target
+  35.555556% { clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) }//overshoot
+  36.296296% { clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) }//down?
+  37.037037% { clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) }//down?
+  37.777778% { clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) }//down
+  38.518519% { clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) }//down
+  39.259259% { clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) }//UP
+  40% { clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) }//up
+  40.740741% { clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) }//up
+  41.481481% { clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) }//up
+  42.222222% { clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) }//up
+  42.962963% { clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) }//down
+  43.703704% { clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) }//down
+  44.444444% { clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%) }//up and rest
+  44.444444% { clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);}//up and rest
+  88.888889% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  89.62963% { transform: matrix3d(0.32628, 0, 0, 0, 0, 0.32628, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  90.37037% { transform: matrix3d(0.10646, 0, 0, 0, 0, 0.10646, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  91.111111% { transform: matrix3d(0.03474, 0, 0, 0, 0, 0.03474, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  91.851852% { transform: matrix3d(0.01133, 0, 0, 0, 0, 0.01133, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  92.592593% { transform: matrix3d(0.0037, 0, 0, 0, 0, 0.0037, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  93.333333% { transform: matrix3d(0.00121, 0, 0, 0, 0, 0.00121, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  94.074074% { transform: matrix3d(0.00039, 0, 0, 0, 0, 0.00039, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  94.814815% { transform: matrix3d(0.00013, 0, 0, 0, 0, 0.00013, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  95.555556% { transform: matrix3d(0.00004, 0, 0, 0, 0, 0.00004, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  96.296296% { transform: matrix3d(0.00001, 0, 0, 0, 0, 0.00001, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  97.037037% { clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%); transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);}
+  100% { clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%); transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);} 
 }
-
 
 
 
 
 @keyframes rotateAll { 
   0% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
-  77.777778% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
-  78.518519% { transform: matrix3d(0.80259, 0.59653, 0, 0, -0.59653, 0.80259, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  77.777778% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);}
+  78.518519% { transform: matrix3d(0.80259, 0.59653, 0, 0, -0.59653, 0.80259, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);}
   79.259259% { transform: matrix3d(0.52673, 0.85004, 0, 0, -0.85004, 0.52673, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   80% { transform: matrix3d(0.60234, 0.79824, 0, 0, -0.79824, 0.60234, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   80.740741% { transform: matrix3d(0.72936, 0.68413, 0, 0, -0.68413, 0.72936, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
@@ -68,7 +90,7 @@
 /* Generated with Bounce.js. Edit at https://goo.gl/DEm6fe */
 
 @keyframes anim-1-circle { 
-  0% { transform: scale(0); }
+  0% { transform: scale(0);}
   0.740741% { transform: matrix3d(0.32778, 0, 0, 0, 0, 0.32778, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   1.481481% { transform: matrix3d(0.69875, 0, 0, 0, 0, 0.69875, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   2.222222% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
@@ -114,6 +136,7 @@
   31.851852% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -25.00121, 0, 0, 1); }
   32.592593% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -25.00151, 0, 0, 1); }
   33.333333% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -25, 0, 0, 1); }
+ 
   88.888889% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -25, 0, 0, 1); }
   89.62963% { transform: matrix3d(0.32628, 0, 0, 0, 0, 0.32628, 0, 0, 0, 0, 1, 0, -25, 0, 0, 1); }
   90.37037% { transform: matrix3d(0.10646, 0, 0, 0, 0, 0.10646, 0, 0, 0, 0, 1, 0, -25, 0, 0, 1); }
@@ -132,8 +155,8 @@
 /* Generated with Bounce.js. Edit at https://goo.gl/e10ASq */
 
 @keyframes anim-3-circle { 
-  0% { transform: scale(0); }
-  44.444444% { transform: scale(0); }
+  0% { transform: scale(0);}
+  44.444444% { transform: scale(0);}
   45.185185% { transform: matrix3d(0.32778, 0, 0, 0, 0, 0.32778, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   45.925926% { transform: matrix3d(0.69875, 0, 0, 0, 0, 0.69875, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   46.666667% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
@@ -165,6 +188,7 @@
   65.925926% { transform: matrix3d(1.00056, 0, 0, 0, 0, 1.00056, 0, 0, 0, 0, 1, 0, -25.00006, 0, 0, 1); }
   66.666667% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -24.98749, 0, 0, 1); }
   67.407407% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -25, 0, 0, 1); }
+ 
   88.888889% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -25, 0, 0, 1); }
   89.62963% { transform: matrix3d(0.32628, 0, 0, 0, 0, 0.32628, 0, 0, 0, 0, 1, 0, -8.15699, 0, 0, 1); }
   90.37037% { transform: matrix3d(0.10646, 0, 0, 0, 0, 0.10646, 0, 0, 0, 0, 1, 0, -2.66146, 0, 0, 1); }
@@ -218,6 +242,7 @@
   42.962963% { transform: matrix3d(1.00042, 0, 0, 0, 0, 1.00042, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   43.703704% { transform: matrix3d(1.00056, 0, 0, 0, 0, 1.00056, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   44.444444% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+ 
   88.888889% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   89.62963% { transform: matrix3d(0.32628, 0, 0, 0, 0, 0.32628, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   90.37037% { transform: matrix3d(0.10646, 0, 0, 0, 0, 0.10646, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
@@ -252,8 +277,8 @@
   75.555556% { transform: matrix3d(0.95217, 0, 0, 0, 0, 0.95217, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   76.296296% { transform: matrix3d(0.96784, 0, 0, 0, 0, 0.96784, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   77.037037% { transform: matrix3d(0.98559, 0, 0, 0, 0, 0.98559, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
-  77.777778% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
-  78.518519% { transform: matrix3d(1.00868, 0, 0, 0, 0, 1.00868, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  77.777778% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);}
+  78.518519% { transform: matrix3d(1.00868, 0, 0, 0, 0, 1.00868, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);}
   79.259259% { transform: matrix3d(1.01167, 0, 0, 0, 0, 1.01167, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   80% { transform: matrix3d(1.01046, 0, 0, 0, 0, 1.01046, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   80.740741% { transform: matrix3d(1.00703, 0, 0, 0, 0, 1.00703, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
@@ -502,6 +527,36 @@
   100% { transform: scaleY(0) skewX(-26.5px); } 
 }
 
+@keyframes gradientChange { 
+  0% { @include use-linear-gradients(warm);}
+  77.777778% { @include use-linear-gradients(warm);}
+  78.518519% {@include use-linear-gradients(value);}
+  79.259259% {@include use-linear-gradients(value);}
+  80% {@include use-linear-gradients(value);}
+  80.740741% {@include use-linear-gradients(value);}
+  81.481481% {@include use-linear-gradients(value);}
+  82.222222% {@include use-linear-gradients(value);}
+  82.962963% {@include use-linear-gradients(value);}
+  83.703704% {@include use-linear-gradients(value);}
+  84.444444% {@include use-linear-gradients(value);}
+  85.185185% {@include use-linear-gradients(value);}
+  85.925926% {@include use-linear-gradients(value); }
+  86.666667% {@include use-linear-gradients(value); }
+  87.407407% {@include use-linear-gradients(value); }
+  88.148148% {@include use-linear-gradients(value); }
+  88.888889% {@include use-linear-gradients(value);}
+  89.62963% { @include use-linear-gradients(value);}
+  100% { @include use-linear-gradients(value);} 
+}
+
+@keyframes changeToBlack{
+  0%{fill: white; stroke: white}
+  77.777778% {fill: white; stroke: white}
+  78.518519% {fill: black; stroke: black;}
+  100% {fill: black; stroke: black;}
+
+}
+
 // ----------------
 
 .svg-loader {
@@ -512,56 +567,75 @@
   left: 0;
   width: 100px;
   height: 100px;
+  border-radius: 50px;
+  @include use-linear-gradients(warm);
   margin: auto;
-  animation: rotateAll 4.5s linear infinite both;
+  animation: gradientChange 2.5s linear both, rotateAll 2.5s linear infinite both;
 }
 
 .anim-1 {
-  animation: g-move-bottom 4.5s linear infinite both;
+  animation: g-move-bottom 2.5s linear infinite both;
   circle {
-    animation: anim-1-circle 4.5s linear infinite both;
+    animation: anim-1-circle 2.5s linear infinite both, changeToBlack 2.5s linear both;
     transform-origin: 50% 50%;
   }
 }
 
 .anim-2 {
-  animation: g-move-bottom 4.5s linear infinite both;
+  animation: g-move-bottom 2.5s linear infinite both;
   circle {
-    animation: anim-2-circle 4.5s linear infinite both;
+    animation: anim-2-circle 2.5s linear infinite both, changeToBlack 2.5s linear both;
     transform-origin: 50% 50%;
   }
   
   line {
-    animation: line-grow-horizontal-1 4.5s linear infinite both;
+    animation: line-grow-horizontal-1 2.5s linear infinite both, changeToBlack 2.5s linear both;
     transform-origin: 100% 50%;
   }
 }
 
 .anim-3 {
   circle {
-    animation: anim-3-circle 4.5s linear infinite both;
+    animation: anim-3-circle 2.5s linear infinite both, changeToBlack 2.5s linear both;
     transform-origin: 50% 50%;
   }
   
   line:first-of-type {
-    animation: line-grow-vertical-1 4.5s linear infinite both;
+    animation: line-grow-vertical-1 2.5s linear infinite both, changeToBlack 2.5s linear both;
     transform-origin: 50% 0%;
   }
   
   line:last-of-type {
-    animation: line-grow-vertical-2 4.5s linear infinite both;
+    animation: line-grow-vertical-2 2.5s linear infinite both, changeToBlack 2.5s linear both;
     transform-origin: 50% 0%;
   }
 }
 
 .anim-4 {
   circle {
-    animation: anim-4-circle 4.5s linear infinite both;
+    animation: anim-4-circle 2.5s linear infinite both, changeToBlack 2.5s linear both;
     transform-origin: 50% 50%;
   }
   
   line {
-    animation: line-grow-horizontal-2 4.5s linear infinite both; 
+    animation: line-grow-horizontal-2 2.5s linear infinite both, changeToBlack 2.5s linear both; 
     transform-origin: 100% 50%;
   }
 }
+
+
+
+/*ANGULAR ANIMATIONS*/
+.fade-element-in.ng-enter {
+  transition: 0.5s ease-out all;
+  opacity: 0; }
+
+.fade-element-in.ng-enter.ng-enter-active {
+  opacity: 0.8; }
+
+.fade-element-in.ng-leave {
+  transition: 0.5s ease-out all;
+  opacity: 0.8; }
+
+.fade-element-in.ng-leave.ng-leave-active {
+  opacity: 0; }

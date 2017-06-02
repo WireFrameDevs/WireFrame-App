@@ -19,6 +19,7 @@ angular.module('app').directive('navBar', function () {
                 $scope.projectNameForReal = projectName;
             }
             $scope.saveProject = function() {
+                $rootScope.loader();
                 let projectData = {
                     user_id: $rootScope.userId,
                     wf_date: new Date(),
@@ -41,14 +42,13 @@ angular.module('app').directive('navBar', function () {
                     });
 
                 }
-                swal({
-                    title: 'Save Successful!',
-                    text: 'Scribble on my scribble pal!',
-                    type: 'success',
-                    imageUrl: 'https://media.giphy.com/media/XreQmk7ETCak0/giphy.gif'
-
+                let saveSwal = {
+                        title: 'Save Successful!',
+                        text: 'Scribble on my scribble pal!',
+                        type: 'success',
+                        imageUrl: 'https://media.giphy.com/media/XreQmk7ETCak0/giphy.gif'
                     }
-                )
+                $rootScope.loader(saveSwal);
             }
         }
     }

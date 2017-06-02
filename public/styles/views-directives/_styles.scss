@@ -3,6 +3,9 @@ html{
     background: url('../images/mainBG.jpg') no-repeat center center fixed; 
     overflow-x: hidden;
 }
+hr{
+    margin: 0;
+}
 .content{
     position: fixed;
     height: 100vh;
@@ -112,7 +115,11 @@ canvas {
 //     }
 // }
 
-
+.flex-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 
 

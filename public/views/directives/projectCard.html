@@ -29,10 +29,22 @@
     </div>
 
     <div class="face back">
-        Back Cards
-        <div class="button red" ng-click="deleteProject(project.wf_id)">
-            <div class="shine" ></div>Delete
+        <div class="flex-container" style="padding: 7px;">
+            <div class="button red" ng-click="deleteProject(project.wf_id)">
+                <div class="shine" ></div>Delete
+            </div>
+            <i class="material-icons icon-large back-arrow" ng-click="isFlipped = !isFlipped">reply</i>
         </div>
-        <i class="material-icons" ng-click="isFlipped = !isFlipped">reply</i>
+        <hr>
+        <div class="black-is-back">
+            <h5>Project Title:</h5>
+        <hr>
+            <p>{{project.wf_name}}</p>
+      
+            <span >Last Edit:</span>
+        <hr>
+            <span style="font-size: 13px">{{project.wf_date | date : format : short}}</span>
+        </div>
+        
     </div>
 </div>
