@@ -73,9 +73,8 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                         let desertStorm = '#project' + i + ' div > svg';
                         let htmlEmptier = angular.element(document.querySelector(desertStorm));
                         htmlEmptier.empty();
-                        let template = ("<svg><image width='100%' height='100%' xlink:href='./images/grid.png' preserveAspectRatio='none'/></svg>" + $scope.projects[i].wf_text);
-                        let linkFn = $compile(template);
-                        let content = linkFn($scope);
+
+                        let content = "<svg><image width='100%' height='100%' xlink:href='./images/grid.png' preserveAspectRatio='none'/></svg>" + $scope.projects[i].wf_text;
                         operationThumbnailGo(i, content);
                       }
                     }, 100)
@@ -92,9 +91,7 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                         let desertStorm = '#project' + i + ' div > svg';
                         let htmlEmptier = angular.element(document.querySelector(desertStorm));
                         htmlEmptier.empty();
-                        let template = ("<svg><image width='100%' height='100%' xlink:href='./images/grid.png' preserveAspectRatio='none'/></svg>" + $scope.favProjects[i].wf_text);
-                        let linkFn = $compile(template);
-                        let content = linkFn($scope);
+                        let content = ("<svg><image width='100%' height='100%' xlink:href='./images/grid.png' preserveAspectRatio='none'/></svg>" + $scope.favProjects[i].wf_text);
                         operationThumbnailGo(i, content);
                       }
                     }, 100)
@@ -111,9 +108,7 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                         let desertStorm = '#project' + i + ' div > svg';
                         let htmlEmptier = angular.element(document.querySelector(desertStorm));
                         htmlEmptier.empty();
-                        let template = ("<svg><image width='100%' height='100%' xlink:href='./images/grid.png' preserveAspectRatio='none'/></svg>" + $scope.recent[i].wf_text);
-                        let linkFn = $compile(template);
-                        let content = linkFn($scope);
+                        let content = ("<svg><image width='100%' height='100%' xlink:href='./images/grid.png' preserveAspectRatio='none'/></svg>" + $scope.recent[i].wf_text);
                         operationThumbnailGo(i, content);
                       }
                     }, 100)
@@ -125,6 +120,7 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
         }
 
         $scope.getFilteredThumbnails = function(project) {
+          console.log('filtering');
           let re = new RegExp('^' + $scope.searchKey, 'i');
           let result =  re.test(project.wf_name)
           for (let i = 0; i < $scope.filtered.length; i++) {
@@ -133,9 +129,7 @@ angular.module('app').controller('projectsCtrl', function($scope, mainService, $
                 let desertStorm = '#project' + i + ' div > svg';
                 let htmlEmptier = angular.element(document.querySelector(desertStorm));
                 htmlEmptier.empty();
-                let template = ("<svg><image width='100%' height='100%' xlink:href='./images/grid.png' preserveAspectRatio='none'/></svg>" + $scope.filtered[i].wf_text);
-                let linkFn = $compile(template);
-                let content = linkFn($scope);
+                let content = ("<svg><image width='100%' height='100%' xlink:href='./images/grid.png' preserveAspectRatio='none'/></svg>" + $scope.filtered[i].wf_text);
                 operationThumbnailGo(i, content);
 
                }
