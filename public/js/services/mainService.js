@@ -12,7 +12,6 @@ angular.module('app').service('mainService', function($http){
   }
 
   this.createProject = (projectData) => {
-    // console.log(projectData.wf_name);
   	return $http({
   		method: 'POST',
   		url: baseurl + 'api/projects',
@@ -23,15 +22,12 @@ angular.module('app').service('mainService', function($http){
   }
 
   this.updateProject = (newData) => {
-    console.log(newData);
   	return $http({
   		method: 'PUT',
   		url: baseurl + 'api/project/',
   		data: newData
   	}).then((response) => {
-  		console.log('updated project comes back from server')
       return response.data;
-
   	});
   }
 
