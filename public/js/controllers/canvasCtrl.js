@@ -40,6 +40,21 @@ angular.module('app').controller('canvasCtrl', function ($scope, mainService, $d
 
   $scope.getProject();
 
+  // ONLY IF NEW PROJECT
+  if($rootScope.isNewProject){
+    let newProject = $rootScope.newPro;
+    
+    $scope.projectHTML = newProject.wf_text;
+    let template = ($scope.projectHTML);
+    let linkFn = $compile(template);
+    let content = linkFn($scope);
+    $rootScope.canvas.append(content);
+    $rootScope.projectName = newProject.wf_name;
+    $rootScope.projectFavVal = newProject.fav_wf;
+    $scope.shapeClass = angular.element(document.querySelector('#canvas'));
+    $rootScope.isNewProject = false;
+  }
+
 
   $scope.allowDraw = true;
 

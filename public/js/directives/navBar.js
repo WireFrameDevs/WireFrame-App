@@ -36,6 +36,7 @@ angular.module('app').directive('navBar', function () {
                     wf_name: $rootScope.projectName,
                     wf_text: $rootScope.canvas[0].innerHTML
                 }
+                
                 if($stateParams.id){
                     // UPDATE PROJECT
                     projectData.wf_id = $stateParams.id;
@@ -48,13 +49,14 @@ angular.module('app').directive('navBar', function () {
                     // CREATE NEW PROJECT
                     projectData.fav_wf = false;
                     mainService.createProject(projectData).then((response) => {
-                        // $rootScope.newPro = response.data[0];
+                        $rootScope.newPro = response.data[0];
                         $scope.newId = response.data[0].wf_id;
-                        // $location.url('projects');
+                        $location.url('canvas/' + $scope.newId);
+                        $rootScope.isNewProject = true;
                     });
 
                 }
-                
+
                 swal({
                     title: 'Save Successful!',
                     text: 'Scribble on my scribble pal!',
