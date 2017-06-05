@@ -72,9 +72,17 @@ hr{
     height: 700px;
     width: 100vw;
     background: #1A1B1F;
-    padding: 100px;
+    padding-top: 100px;
+    padding-bottom: 50px;
 
     iframe{
+        margin-top: 60px;
+        border-radius: 6px;
+        box-shadow: $card-shadow;
+    }
+    img{
+        height: 1000px;
+        width: 670px;
         margin-top: 60px;
         border-radius: 6px;
         box-shadow: $card-shadow;
