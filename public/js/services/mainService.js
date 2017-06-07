@@ -1,11 +1,11 @@
 angular.module('app').service('mainService', function($http){
 
-  let baseurl = 'http://localhost:3000/';
+  // let baseurl = 'http://138.68.244.21:5025';
 
   this.getAllProjects = (userId) => {
   	return $http({
   		method: 'GET',
-  		url: baseurl + 'api/projects/' + userId
+  		url:'/api/projects/' + userId
   	}).then((response) => {
   		return response.data;
   	});
@@ -14,7 +14,7 @@ angular.module('app').service('mainService', function($http){
   this.createProject = (projectData) => {
   	return $http({
   		method: 'POST',
-  		url: baseurl + 'api/projects',
+  		url:'/api/projects',
   		data: projectData
   	}).then((response) => {
   		return response;
@@ -24,7 +24,7 @@ angular.module('app').service('mainService', function($http){
   this.updateProject = (newData) => {
   	return $http({
   		method: 'PUT',
-  		url: baseurl + 'api/project/',
+  		url:'/api/project/',
   		data: newData
   	}).then((response) => {
       return response.data;
@@ -34,7 +34,7 @@ angular.module('app').service('mainService', function($http){
   this.updateFav = (isFav) => {
     return $http({
       method: 'PUT',
-      url: baseurl + 'api/project/fav',
+      url:'/api/project/fav',
       data: isFav
     }).then((response) => {
       return response.data;
@@ -44,7 +44,7 @@ angular.module('app').service('mainService', function($http){
   this.deleteProject = (projectId) => {
   	return $http({
   		method: 'DELETE',
-  		url: baseurl + 'api/projects/' + projectId
+  		url:'/api/projects/' + projectId
   	}).then((response) => {
   		return response;
   	});
