@@ -6,7 +6,7 @@ const express       = require('express'),
       passport      = require('passport'),
       Auth0Strategy = require('passport-auth0'),
       config        = require('./config'),
-      port          = 3000;
+      port          = 5025;
 
 let conn = massive.connectSync({
     connectionString: config.elephantSQL
