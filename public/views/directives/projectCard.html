@@ -32,13 +32,17 @@
         </div>
         <hr>
         <div class="black-is-back">
-            <h5>Project Title:</h5>
-        <hr>
-            <p>{{project.wf_name}}</p>
-      
-            <span >Last Edit:</span>
-        <hr>
-            <span style="font-size: 13px">{{project.wf_date | date : format : short}}</span>
+            <div>
+                <h5>Project Title:</h5>
+                <p>{{project.wf_name}}</p>
+            </div>
+
+            <div class="lower-content">
+                <span >Last Edit: </span>
+                <span>{{project.wf_date | date : format : short}}</span>
+
+            </div>
+            
         </div>
         
     </div>
